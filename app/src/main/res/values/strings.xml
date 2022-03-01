@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Hedgehog_Honeymoon</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cute_hedgehog">Cute Hedgehog</string>
+    <string name="happy_hedgehogs">Happy\nHedgehogs!</string>
+    <string name="play">PLAY</string>
+    <string name="settings">Settings</string>
 </resources>
