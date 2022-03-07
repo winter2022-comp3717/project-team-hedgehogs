@@ -13,26 +13,46 @@
         android:layout_height="wrap_content"
         android:text="@string/happy_hedgehogs"
         android:textAlignment="center"
+        android:textColor="#689F38"
         android:textSize="44sp"
         android:textStyle="bold" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/fragmentContainerView_main"
         android:name="com.bcit.hedgehog_honeymoon.SettingsFragment"
         android:layout_width="match_parent"
-        android:layout_height="413dp" />
+        android:layout_height="372dp"
+        tools:layout = "@layout/fragment_image_hedgehog"
+        />
 
     <Button
         android:id="@+id/button_main_play"
         android:layout_width="316dp"
         android:layout_height="126dp"
         android:layout_gravity="center_horizontal"
-        android:text="@string/play" />
+
+        android:backgroundTint="@android:color/white"
+        android:onClick="goToGameActivity"
+        android:text="@string/play"
+
+        android:textColor="@color/grass_green"
+        android:textSize="34sp"
+        app:strokeColor="@color/grass_green"
+        app:strokeWidth="2dp" />
+
 
     <Button
         android:id="@+id/button_main_settings"
         android:layout_width="317dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/settings" />
+
+        android:backgroundTint="@android:color/white"
+        android:onClick="openSettings"
+        android:text="@string/settings"
+
+        android:textColor="@color/grass_green"
+        android:textSize="16sp"
+        app:strokeColor="@color/grass_green"
+        app:strokeWidth="2dp" />
 </LinearLayout>
