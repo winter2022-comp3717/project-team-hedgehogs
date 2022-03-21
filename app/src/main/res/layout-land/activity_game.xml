@@ -23,20 +23,92 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/imageView_game"
+        <LinearLayout
+            android:layout_width="341dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_game_lifetime"
+                android:layout_width="match_parent"
+                android:layout_height="29dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/amatica_sc_bold"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:shadowColor="@android:color/white"
+                android:shadowDx="-3"
+                android:shadowDy="-3"
+                android:shadowRadius="1"
+                android:text="10000"
+                android:textColor="@color/super_dark_green"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView_game"
+                android:layout_width="wrap_content"
+                android:layout_height="310dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/cute_hedgehog"
+                app:srcCompat="@drawable/hedhog_shadow" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:contentDescription="@string/cute_hedgehog"
-            app:srcCompat="@drawable/hedgehog" />
+            android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_game"
-            android:layout_width="417dp"
-            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-        </androidx.recyclerview.widget.RecyclerView>
+                <TextView
+                    android:id="@+id/textView_game_current_label"
+                    android:layout_width="153dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/amatica_sc_bold"
+                    android:foregroundGravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:shadowColor="@android:color/white"
+                    android:shadowDx="-3"
+                    android:shadowDy="-3"
+                    android:shadowRadius="1"
+                    android:text="@string/current"
+                    android:textColor="@color/super_dark_green"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView_game_current"
+                    android:layout_width="153dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/amatica_sc_bold"
+                    android:foregroundGravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:shadowColor="@android:color/white"
+                    android:shadowDx="-3"
+                    android:shadowDy="-3"
+                    android:shadowRadius="1"
+                    android:text="5000"
+                    android:textColor="@color/super_dark_green"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_game"
+                android:layout_width="match_parent"
+                android:layout_height="322dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
