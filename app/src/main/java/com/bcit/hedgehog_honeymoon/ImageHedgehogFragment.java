@@ -3,6 +3,8 @@ package com.bcit.hedgehog_honeymoon;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -61,5 +63,7 @@ public class ImageHedgehogFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_image_hedgehog, container, false);
+
     }
+
 }

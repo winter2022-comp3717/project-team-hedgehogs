@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Choreographer;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.Choreographer.FrameCallback;
@@ -25,20 +26,25 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         setContentView(R.layout.activity_game);
 
         gameIsRunning = true;
+        hedgehogPicture = (ImageView) findViewById(R.id.imageView_game);
 
-        //hedgehogPicture = (ImageView) findViewById(R.id.myImageId);
-//        img.setOnClickListener(new OnClickListener() {
-//            public void onClick(View v) {
-//                incrementHedgeHog();
-//            }
-//        });
+        hedgehogPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                incrementHedgehog();
+            }
+        });
+
+
     }
 
     //Add a hedgehog manually by clicking
     public void incrementHedgehog(){
         totalHedgehogs++;
         currentHedgehogs++;
-        updateUI();
+        //updateUI();
+        System.out.println("Clicked the hed hog!");
+        System.out.println("Number of hedgehogs : " + totalHedgehogs);
     }
 
     //Increment by a larger amount, for automation
