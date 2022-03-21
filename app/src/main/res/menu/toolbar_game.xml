@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/item_actionbar_bike"
-        android:icon="@drawable/ic_baseline_pedal_bike_24"
+        android:icon="@drawable/ic_baseline_home_24"
         android:iconTint="#FFFFFF"
         android:title="Bike"
-        app:showAsAction="ifRoom" />
+        />
     <item
         android:id="@+id/item_actionbar_grass"
-        android:icon="@drawable/ic_baseline_grass_24"
+        android:icon="@drawable/ic_baseline_settings_24"
         android:iconTint="#FFFFFF"
         android:title="Grass"
-        app:showAsAction="ifRoom" />
+        />
 </menu>

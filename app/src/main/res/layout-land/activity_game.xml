@@ -51,7 +51,7 @@
                 android:layout_height="310dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/cute_hedgehog"
-                app:srcCompat="@drawable/hedhog_shadow" />
+                app:srcCompat="@drawable/hedgehog_shadow" />
         </LinearLayout>
 
         <LinearLayout
