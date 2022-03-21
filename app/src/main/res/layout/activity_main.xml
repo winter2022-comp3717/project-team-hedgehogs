@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/grass"
     tools:context=".MainActivity">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="@string/happy_hedgehogs"
         android:textAlignment="center"
-        android:textColor="#689F38"
+        android:textColor="@color/army_green"
         android:textSize="44sp"
         android:textStyle="bold" />
 

@@ -4,18 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/grass"
+    android:orientation="vertical"
     tools:context=".GameActivity">
 
-    <ImageView
-        android:id="@+id/imageView_game"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:contentDescription="@string/cute_hedgehog"
-        app:srcCompat="@drawable/hedgehog" />
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_game"
-        android:layout_width="417dp"
-        android:layout_height="310dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/imageView_game"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/cute_hedgehog"
+            app:srcCompat="@drawable/hedgehog" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_game"
+            android:layout_width="417dp"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
 </LinearLayout>
