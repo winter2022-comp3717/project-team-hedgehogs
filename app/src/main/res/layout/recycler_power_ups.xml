@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageView_power_ups"
             android:layout_width="102dp"
             android:layout_height="match_parent"
             app:srcCompat="@drawable/safari" />
@@ -38,7 +38,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textView_power_up_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
