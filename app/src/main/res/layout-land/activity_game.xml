@@ -31,7 +31,7 @@
             <TextView
                 android:id="@+id/textView_game_lifetime"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="59dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/amatica_sc_bold"
                 android:foregroundGravity="center_horizontal"
@@ -42,8 +42,9 @@
                 android:shadowRadius="1"
                 android:text="10000"
                 android:textColor="@color/super_dark_green"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="40sp"
+                android:textStyle="bold"
+                />
 
             <ImageView
                 android:id="@+id/imageView_game"
@@ -62,7 +63,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -79,16 +80,16 @@
                     android:shadowRadius="1"
                     android:text="@string/current"
                     android:textColor="@color/super_dark_green"
-                    android:textSize="24sp"
+                    android:textSize="40sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView_game_current"
                     android:layout_width="153dp"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_weight="1"
                     android:fontFamily="@font/amatica_sc_bold"
-                    android:foregroundGravity="center_horizontal"
                     android:gravity="center_horizontal"
                     android:shadowColor="@android:color/white"
                     android:shadowDx="-3"
@@ -96,7 +97,7 @@
                     android:shadowRadius="1"
                     android:text="5000"
                     android:textColor="@color/super_dark_green"
-                    android:textSize="24sp"
+                    android:textSize="40sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
