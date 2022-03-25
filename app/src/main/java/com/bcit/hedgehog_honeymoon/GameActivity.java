@@ -41,9 +41,10 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_game, menu);
+        getMenuInflater().inflate(R.menu.menu_toolbar_game, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
 
     //Add a hedgehog manually by clicking
     public void incrementHedgehog(){

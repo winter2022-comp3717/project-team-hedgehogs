@@ -23,10 +23,18 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <LinearLayout
-            android:layout_width="341dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="347dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView_game"
+                android:layout_width="358dp"
+                android:layout_height="309dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:contentDescription="@string/cute_hedgehog"
+                app:srcCompat="@drawable/hedgehog_shadow" />
 
             <TextView
                 android:id="@+id/textView_game_lifetime"
@@ -43,17 +51,8 @@
                 android:text="10000"
                 android:textColor="@color/super_dark_green"
                 android:textSize="40sp"
-                android:textStyle="bold"
-                />
-
-            <ImageView
-                android:id="@+id/imageView_game"
-                android:layout_width="wrap_content"
-                android:layout_height="310dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/cute_hedgehog"
-                app:srcCompat="@drawable/hedgehog_shadow" />
-        </LinearLayout>
+                android:textStyle="bold" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +67,7 @@
 
                 <TextView
                     android:id="@+id/textView_game_current_label"
-                    android:layout_width="153dp"
+                    android:layout_width="37dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:fontFamily="@font/amatica_sc_bold"
