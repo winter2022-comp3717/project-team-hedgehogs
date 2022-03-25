@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Choreographer;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +37,12 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         });
         updateUI();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_game, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     //Add a hedgehog manually by clicking

@@ -4,30 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/grass"
     tools:context=".StoryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
         android:paddingBottom="3dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView_story"
             android:layout_width="match_parent"
             android:layout_height="285dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:background="@color/nice_green"
+            android:fontFamily="casual"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_story_return"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:backgroundTint="@color/nice_green"
+            android:fontFamily="@font/amatica_sc_bold"
+            android:text="Return"
+            android:textAlignment="center"
+            android:textColor="@color/army_green"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:strokeColor="@color/grass_green"
+            app:strokeWidth="2dp" />
+
     </LinearLayout>
 
     <ImageView
