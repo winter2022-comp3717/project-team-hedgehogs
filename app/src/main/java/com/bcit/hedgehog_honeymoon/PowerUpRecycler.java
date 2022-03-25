@@ -8,8 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-
-public class Recycler extends RecyclerView.Adapter<Recycler.ViewHolder> {
+public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHolder> {
 
     private PowerUps[] localDataSet;
 
@@ -47,7 +46,7 @@ public class Recycler extends RecyclerView.Adapter<Recycler.ViewHolder> {
      * @param dataSet String[] containing the data to populate views to be used
      *                by RecyclerView.
      */
-    public Recycler(PowerUps [] dataSet) {
+    public PowerUpRecycler(PowerUps [] dataSet) {
         localDataSet = dataSet;
     }
 
