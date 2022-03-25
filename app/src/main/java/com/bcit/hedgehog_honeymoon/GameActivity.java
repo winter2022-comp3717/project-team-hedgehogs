@@ -7,7 +7,6 @@ import android.view.Choreographer;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.Choreographer.FrameCallback;
 
 public class GameActivity extends AppCompatActivity implements Choreographer.FrameCallback{
 
@@ -24,7 +23,8 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
+        totalHedgeHogTextView = findViewById(R.id.textView_game_lifetime);
+        currentHedgeHogTextView = findViewById(R.id.textView_game_current);
         gameIsRunning = true;
         hedgehogPicture = (ImageView) findViewById(R.id.imageView_game);
 
@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
                 incrementHedgehog();
             }
         });
-
+        updateUI();
 
     }
 
@@ -42,7 +42,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public void incrementHedgehog(){
         totalHedgehogs++;
         currentHedgehogs++;
-        //updateUI();
+        updateUI();
         System.out.println("Clicked the hed hog!");
         System.out.println("Number of hedgehogs : " + totalHedgehogs);
     }
@@ -59,8 +59,8 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
 
     //Update the UI on screen
     public void updateUI(){
-        totalHedgeHogTextView.setText(totalHedgehogs);
-        currentHedgeHogTextView.setText(currentHedgehogs);
+        totalHedgeHogTextView.setText(Integer.toString(totalHedgehogs));
+        currentHedgeHogTextView.setText(Integer.toString(currentHedgehogs));
     }
 
     //This will execute every frame for hedgehog automation
@@ -68,6 +68,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         checkForAutomation();
         updateUI();
         checkForEvents();
+        System.out.println("This is happening a lot!");
     }
 
     public void checkForAutomation(){
