@@ -8,9 +8,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONException;
+
 public class GameActivity extends AppCompatActivity implements Choreographer.FrameCallback{
 
     public Event events = new Event();
+    public SaveState currentSaveState;
+    public SaveManager saveManager;
 
     public TextView totalHedgeHogTextView;
     public TextView currentHedgeHogTextView;
@@ -34,6 +38,10 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
                 incrementHedgehog();
             }
         });
+
+        saveManager = new SaveManager();
+        currentSaveState = saveManager.getCurrentSaveState();
+        assignHedgehogsFromSave();
         updateUI();
 
     }
@@ -63,6 +71,18 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         currentHedgeHogTextView.setText(Integer.toString(currentHedgehogs));
     }
 
+    public void assignHedgehogsFromSave(){
+        try {
+            int newCurrentHedgehogs = currentSaveState.getInt("currentHedgehogs");
+            int newTotalHedgehogs = currentSaveState.getInt("totalHedgehogs");
+            currentHedgehogs = newCurrentHedgehogs;
+            totalHedgehogs = newTotalHedgehogs;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     //This will execute every frame for hedgehog automation
     public void doFrame(long time){
         checkForAutomation();
@@ -76,6 +96,6 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     }
 
     public void checkForEvents(){
-        //if some milestone, run an event with the even data from the event object
+
     }
 }
