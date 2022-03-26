@@ -3,53 +3,93 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".SettingsFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="61dp"
-        android:text="@string/settings"
-        android:textColor="#2E7D32"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="393dp"
+        android:layout_height="0dp"
+        android:background="@color/grey_green"
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="158dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="196dp"
-        android:text="@string/dummyText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
 
-    <Button
-        android:id="@+id/clearDate_fragSettings_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="26dp"
-        android:text="@string/clearDataText_button"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+            <TextView
+                android:id="@+id/textView_settings_vol"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/amatica_sc_bold"
+                android:shadowColor="@android:color/white"
+                android:shadowDx="-3"
+                android:shadowDy="-3"
+                android:shadowRadius="1"
+                android:text="@string/volume"
+                android:textAlignment="center"
+                android:textColor="@color/super_dark_green"
+                android:textSize="40sp" />
 
-    <TextView
-        android:id="@+id/textViewBorder_settingsFrag"
-        android:layout_width="391dp"
-        android:layout_height="485dp"
-        android:textAlignment="center"
+            <SeekBar
+                android:id="@+id/seekBar_settings"
+                android:layout_width="249dp"
+                android:layout_height="55dp"
+                android:progressTint="@color/army_green" />
+        </LinearLayout>
 
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Switch
+            android:id="@+id/switch_settings_music"
+            android:layout_width="353dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/amatica_sc_bold"
+            android:shadowColor="@android:color/white"
+            android:shadowDx="-3"
+            android:shadowDy="-3"
+            android:shadowRadius="1"
+            android:text="@string/music"
+            android:textColor="@color/super_dark_green"
+            android:textSize="40sp" />
+
+        <Switch
+            android:id="@+id/switch_settings_sfx"
+            android:layout_width="353dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/amatica_sc_bold"
+            android:paddingBottom="50dp"
+            android:shadowColor="@android:color/white"
+            android:shadowDx="-3"
+            android:shadowDy="-3"
+            android:shadowRadius="1"
+            android:text="@string/sfx"
+            android:textColor="@color/super_dark_green"
+            android:textSize="40sp" />
+
+        <Button
+            android:id="@+id/button_main_settings"
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+
+            android:backgroundTint="@color/nice_green"
+            android:fontFamily="@font/amatica_sc_bold"
+            android:onClick="openSettings"
+            android:text="@string/clearDataText_button"
+            android:textAlignment="center"
+            android:textColor="@color/super_dark_green"
+            android:textSize="34sp"
+            app:strokeColor="@color/grass_green"
+            app:strokeWidth="2dp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

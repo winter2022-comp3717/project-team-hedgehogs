@@ -1,13 +1,17 @@
 package com.bcit.hedgehog_honeymoon;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Choreographer;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 public class GameActivity extends AppCompatActivity implements Choreographer.FrameCallback{
 
@@ -29,6 +33,13 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         gameIsRunning = true;
         hedgehogPicture = (ImageView) findViewById(R.id.imageView_game);
 
+        // Find the toolbar view inside the activity layout
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_game);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         hedgehogPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,7 +53,23 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_toolbar_game, menu);
+        //return true;
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.Menu_Home)
+        {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        } else if(item.getItemId() == R.id.Menu_settings) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        } else {
+            System.out.println(item.getTitle());
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
