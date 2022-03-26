@@ -10,4 +10,42 @@
     <string name="clearDataText_button">Clear Data</string>
     <string name="dummyText"><![CDATA[<insert stuff here>]]></string>
     <string name="current">Current:</string>
+
+
+    <string name="event_1">
+        Welcome to the wonderful world of Hedgehogs! My names Uncle Tapp, and we here at the Happy Scritches Hedgehog Sanctuary and thrilled to have you as our newest franchise owner, #24362 &lt;ERROR FINDING NAME&gt;
+
+        As you\'ll remember from your mandatory training seminar, your job here is to wrangle up as many of these critters as you possibly can and send them back to Happy Scritches HQ. Once we receive them, they\'ll be &lt;POSITIVE ADJECTIVE&gt; &lt;PLEASANTRY&gt; in their new homes!
+        Now that you\'re a part of the Happy Scritches family officially, you\'re authorized to hire your own employees and buy your own hedgehog-herding equipment. We\'ll be checking in from time to time to make sure you feel like you\'re still on track.
+
+        Good luck, and
+        \'Happy Hedgehogs\'
+</string>
+    <string name="event_2">
+        Hey again #24362 &lt;ERROR FINDING NAME&gt;,
+        I\'m pleased to announce that you\'ve been doing exceptionally well so far since your acquisition of &lt;FRANCHISE #24362 NAME&gt;. We\'re all mighty proud of you back at HQ. Keep up the great work, and you\'ll be in the running for franchise owner of the year!
+    </string>
+    <string name="event_3">
+        Well hey there Neighbor! Wasn\'t sure when I\'d get a chance to introduce myself. My name is Kitkat, I own the dairy ranch just down the road. Nice to have you move in!
+        If you ever need anything, don\'t hesitate to reach out!! Happy to help a neighbor out!
+</string>
+    <string name="event_4">
+        Whoo!~ You\'re taking to this Hedgehog wrangling like a natural! As thanks for all the hard work you\'ve been doing down at &lt;FRANCHISE #24362 NAME&gt;, I talked to the boys at HQ and we\'d like to offer you a gift card valued for 1800 Critch-Bux, redeemable at your nearest retailer of Happy-Scritches promotional merchandise.
+    </string>
+    <string name="event_5">
+        Hey boss! Me as the ladies were chatting about our compensation, we were wondering if you\'d ever be willing to pay us in something other than Hedgehogs?
+
+
+        No…? Uhh, Okay!
+
+    </string>
+    <string name="event_6">
+        Hey again! I hear you\'ve been moving up in the world! Great work over here, you always seem to be bustling with activity.
+
+        Listen, this may sound silly, but I had a couple hedgehog
+
+    </string>
+
+
+
 </resources>
