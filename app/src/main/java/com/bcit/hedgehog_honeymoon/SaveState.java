@@ -1,23 +1,33 @@
 package com.bcit.hedgehog_honeymoon;
 
 import android.app.Activity;
+import android.content.Context;
+import android.util.JsonReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.io.File;
 
 public class SaveState extends JSONObject{ }
 
 class SaveManager{
     SaveState currentState;
-    public SaveManager(){
+    Context context;
+    public SaveManager(Context context){
         //TODO find a way to store save data on device. Check if it exitst here, else create new
         //? Why is is a JSON object? A little more trouble to deal with in Java,
         // but easier and more universal to save than a Java class, obviously Kat.
+        this.context = context.getApplicationContext();
         if(doesASaveStateExist()){
             loadSaveGameFromDevice();
         } else {
             createNewSaveState();
         }
+
     }
 
     public SaveState getCurrentSaveState(){
@@ -26,16 +36,54 @@ class SaveManager{
 
     //Once we have saving figured out, this will be the method to save
     public void saveSaveStateToDevice(){
+        File file = getSaveStateFromDisk();
+        try {
+            FileWriter writer = new FileWriter(file);
+            writer.write(currentState.toString());
+            System.out.println(currentState.toString());
+            System.out.println("A string");
+        } catch (IOException e) {
+            System.out.println("Error saving file");
+            e.printStackTrace();
+        }
 
+    }
+
+    //Get the File objet from Disk
+    public File getSaveStateFromDisk(){
+        File file = new File(context.getFilesDir(), "hedgeHogSave.json");
+        try {
+            if(file.createNewFile()){
+                System.out.println("New file created");
+            } else {
+                System.out.println("File already exists");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 
     //Once we have saving figured out, this will be how we load
     public void loadSaveGameFromDevice(){
-
+        File file = getSaveStateFromDisk();
+//        JsonReader reader = new JsonReader(file);
+//
+//        SaveState stateFromDisk = reader.readObject();
     }
 
     //TODO Add a way for this to actually check a thing
     public boolean doesASaveStateExist(){
+        File file = new File(context.getFilesDir(), "hedgeHogSave.json");
+        try {
+            if(file.createNewFile()){
+                return false;
+            } else {
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -43,6 +91,10 @@ class SaveManager{
     public void __deleteAllSaveData(){
 
     }
+
+    //From internal storage, getFilesDir() or getCacheDir()
+    //
+    //From external storage, getExternalFilesDir() or getExternalCacheDir()
 
     public void createNewSaveState(){
         currentState = new SaveState();

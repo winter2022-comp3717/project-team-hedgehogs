@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
             }
         });
 
-        saveManager = new SaveManager();
+        saveManager = new SaveManager(getApplicationContext());
         currentSaveState = saveManager.getCurrentSaveState();
         assignHedgehogsFromSave();
         updateUI();
@@ -53,6 +53,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         updateUI();
         System.out.println("Clicked the hed hog!");
         System.out.println("Number of hedgehogs : " + totalHedgehogs);
+        saveManager.saveSaveStateToDevice();
     }
 
     //Increment by a larger amount, for automation
@@ -90,6 +91,8 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         checkForEvents();
         System.out.println("This is happening a lot!");
     }
+
+    
 
     public void checkForAutomation(){
         //check for new hedgehogs from the shop items, update hedgehog counter
