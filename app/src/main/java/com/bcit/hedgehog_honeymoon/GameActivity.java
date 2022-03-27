@@ -76,6 +76,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
             startActivity(intent);
         } else if(item.getItemId() == R.id.Menu_settings) {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("TRUE", true);
             startActivity(intent);
         } else {
             System.out.println(item.getTitle());

@@ -1,10 +1,6 @@
 package com.bcit.hedgehog_honeymoon;
-
-import android.app.Activity;
 import android.content.Context;
-import android.util.JsonReader;
 
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;

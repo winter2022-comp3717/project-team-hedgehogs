@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainerView_main, new ImageHedgehogFragment());
         fragmentTransaction.commit();
-
         View dummyView = findViewById(R.id.fragmentContainerView_main);
         PlayBackgroundSound(dummyView);
 
@@ -50,4 +49,11 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragmentContainerView_main, new SettingsFragment());
         fragmentTransaction.commit();
     }
+
+    public void openSettings() {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainerView_main, new SettingsFragment());
+        fragmentTransaction.commit();
+    }
+
 }
