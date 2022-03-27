@@ -3,6 +3,7 @@ package com.bcit.hedgehog_honeymoon;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -16,6 +17,7 @@ public class StoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_story);
 
         scrollable = (TextView)findViewById(R.id.textView_story);
@@ -23,7 +25,8 @@ public class StoryActivity extends AppCompatActivity {
         //Enabling scrolling on TextView.
         scrollable.setMovementMethod(new ScrollingMovementMethod());
         Intent intent = getIntent();
-        String story = intent.getExtras().getString("TEXT");
+        int storyID = intent.getExtras().getInt("TEXT");
+        String story = getString(storyID);
         int imgID = intent.getExtras().getInt("IMG");
 
         scrollable.setText(story);

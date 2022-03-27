@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 
 import android.content.Intent;

@@ -190,7 +190,6 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
 
     public void checkForEvents(){
         //DEBUG
-        event1FLag = false;
         if(totalHedgehogs > 10 && !event1FLag) {
             playEvent(1);
             event1FLag = true;
