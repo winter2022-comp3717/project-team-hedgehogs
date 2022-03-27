@@ -22,11 +22,9 @@ class SaveManager{
         //? Why is is a JSON object? A little more trouble to deal with in Java,
         // but easier and more universal to save than a Java class, obviously Kat.
         this.context = context.getApplicationContext();
-        if(doesASaveStateExist()){
-            loadSaveGameFromDevice();
-        } else {
-            createNewSaveState();
-        }
+
+        createNewSaveState();
+
 
     }
 

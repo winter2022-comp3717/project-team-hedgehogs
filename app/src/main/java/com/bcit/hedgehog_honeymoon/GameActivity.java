@@ -148,9 +148,9 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     }
 
     PowerUps [] arr = new PowerUps[]{
-            new PowerUps ("Mealworm", "Does some stuff to make u get more hedgies", R.drawable.mealworm),
-            new PowerUps ("Hedgehog Safari", "Does some stuff to make u get more hedgies", R.drawable.safari),
-            new PowerUps ("Lady Hog", "Does some stuff to make u get more hedgies", R.drawable.ladyhog)
+            new PowerUps ("Mealworm", "Does some stuff to make u get more hedgies", "Cost: 100", R.drawable.mealworm),
+            new PowerUps ("Hedgehog Safari", "Does some stuff to make u get more hedgies", "Cost: 100", R.drawable.safari),
+            new PowerUps ("Lady Hog", "Does some stuff to make u get more hedgies", "Cost: 100", R.drawable.ladyhog)
     };
 
 }

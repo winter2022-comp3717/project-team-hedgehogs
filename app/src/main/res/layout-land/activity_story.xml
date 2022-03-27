@@ -26,7 +26,8 @@
             android:fontFamily="casual"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:scrollbars="vertical"/>
 
         <Button
             android:id="@+id/button_story_return"

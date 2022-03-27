@@ -19,6 +19,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameValue;
         private final TextView descriptionValue;
+        private final TextView costValue;
         private final ImageView img;
 
         public ViewHolder(View view) {
@@ -26,6 +27,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
 
             nameValue = view.findViewById(R.id.textView_power_up_name);
             descriptionValue = view.findViewById(R.id.textView_power_up_desc);
+            costValue = view.findViewById(R.id.textView_power_up_cost);
             img = view.findViewById(R.id.imageView_power_ups);
         }
 
@@ -34,6 +36,9 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         }
         public TextView getDescriptionValue() {
             return descriptionValue;
+        }
+        public TextView getCostValue() {
+            return costValue;
         }
         public ImageView getImg() {
             return img;
@@ -67,6 +72,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         PowerUps item = localDataSet[position];
         viewHolder.getNameValue().setText(item.getName());
         viewHolder.getDescriptionValue().setText(item.getDescription());
+        viewHolder.getCostValue().setText(item.getCost());
         viewHolder.getImg().setImageResource(item.getImageId());
     }
 
