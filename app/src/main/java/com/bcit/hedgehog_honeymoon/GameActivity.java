@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
 
@@ -43,6 +45,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        setUpRecyclerView(arr);
 
         hedgehogPicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,4 +139,18 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public void checkForEvents(){
 
     }
+
+    private void setUpRecyclerView(PowerUps[] data) {
+        RecyclerView rv = findViewById(R.id.recycler_game);
+        PowerUpRecycler adapter = new PowerUpRecycler(data);
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    PowerUps [] arr = new PowerUps[]{
+            new PowerUps ("Mealworm", "Does some stuff to make u get more hedgies", R.drawable.mealworm),
+            new PowerUps ("Hedgehog Safari", "Does some stuff to make u get more hedgies", R.drawable.safari),
+            new PowerUps ("Lady Hog", "Does some stuff to make u get more hedgies", R.drawable.ladyhog)
+    };
+
 }
