@@ -1,13 +1,24 @@
 package com.bcit.hedgehog_honeymoon;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
+
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 public class MainActivity extends AppCompatActivity {
+
+//    BackgroundSound mBackgroundSound = new BackgroundSound();
+    private Intent musicService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragmentContainerView_main, new ImageHedgehogFragment());
         fragmentTransaction.commit();
 
+        View dummyView = findViewById(R.id.fragmentContainerView_main);
+        PlayBackgroundSound(dummyView);
+
+    }
+
+    public void PlayBackgroundSound(View view) {
+        musicService = new Intent(MainActivity.this, BackgroundSoundService.class);
+        startService(musicService);
     }
 
     public void goToGameActivity(View v) {
@@ -31,5 +50,4 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragmentContainerView_main, new SettingsFragment());
         fragmentTransaction.commit();
     }
-
 }

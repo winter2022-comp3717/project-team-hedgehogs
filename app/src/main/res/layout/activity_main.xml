@@ -30,7 +30,7 @@
         android:name="com.bcit.hedgehog_honeymoon.SettingsFragment"
         android:layout_width="match_parent"
         android:layout_height="420dp"
-        tools:layout="@layout/fragment_image_hedgehog" />
+        tools:layout="@layout/fragment_settings" />
 
     <Button
         android:id="@+id/button_main_play"
