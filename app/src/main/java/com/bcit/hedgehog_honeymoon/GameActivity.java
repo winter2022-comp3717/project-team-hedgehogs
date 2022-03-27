@@ -19,7 +19,8 @@ import org.json.JSONException;
 
 public class GameActivity extends AppCompatActivity implements Choreographer.FrameCallback{
 
-    public Event events = new Event();
+
+
     public SaveState currentSaveState;
     public SaveManager saveManager;
 
@@ -29,6 +30,17 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public int currentHedgehogs;
     public ImageView hedgehogPicture;
     public boolean gameIsRunning;
+
+    public static boolean event1FLag = false;
+    public static boolean event2FLag = false;
+    public static boolean event3FLag = false;
+    public static boolean event4FLag = false;
+    public static boolean event5FLag = false;
+    public static boolean event6FLag = false;
+    public static boolean event7FLag = false;
+    public static boolean event8FLag = false;
+    public static boolean event9FLag = false;
+    public static boolean event10FLag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +69,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         saveManager = new SaveManager(getApplicationContext());
         currentSaveState = saveManager.getCurrentSaveState();
         assignHedgehogsFromSave();
+        setEventFlagsFromSaveState();
         updateUI();
 
     }
@@ -92,6 +105,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         System.out.println("Clicked the hed hog!");
         System.out.println("Number of hedgehogs : " + totalHedgehogs);
         //Save at each manual click
+        checkForEvents();
         updateSaveState();
         saveManager.saveSaveStateToDevice(currentSaveState);
     }
@@ -115,20 +129,16 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
             currentSaveState.put("numberOfUpgrade8", 0);
             currentSaveState.put("numberOfUpgrade9", 0);
 
-            currentSaveState.put("Event1", false);
-            currentSaveState.put("Event2", false);
-            currentSaveState.put("Event3", false);
-            currentSaveState.put("Event4", false);
-            currentSaveState.put("Event5", false);
-            currentSaveState.put("Event6", false);
-            currentSaveState.put("Event7", false);
-            currentSaveState.put("Event8", false);
-            currentSaveState.put("Event9", false);
-            currentSaveState.put("Event10", false);
-            currentSaveState.put("Event11", false);
-            currentSaveState.put("Event12", false);
-            currentSaveState.put("Event13", false);
-            currentSaveState.put("Event14", false);
+            currentSaveState.put("Event1", event1FLag);
+            currentSaveState.put("Event2", event2FLag);
+            currentSaveState.put("Event3", event3FLag);
+            currentSaveState.put("Event4", event4FLag);
+            currentSaveState.put("Event5", event5FLag);
+            currentSaveState.put("Event6", event6FLag);
+            currentSaveState.put("Event7", event7FLag);
+            currentSaveState.put("Event8", event8FLag);
+            currentSaveState.put("Event9", event9FLag);
+            currentSaveState.put("Event10", event10FLag);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -178,7 +188,23 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     }
 
     public void checkForEvents(){
+        //DEBUG
+        event1FLag = false;
+        if(totalHedgehogs > 10 && !event1FLag) {
+            playEvent(1);
+            event1FLag = true;
+            return;
+        }
+    }
 
+    public void playEvent(int eventNumber){
+        Intent intent = new Intent(this, StoryActivity.class);
+
+        if(eventNumber == 1){
+            intent.putExtra("TEXT", R.string.event_1);
+            intent.putExtra("IMG", R.drawable.tapp);
+        }
+        startActivity(intent);
     }
 
     private void setUpRecyclerView(PowerUps[] data) {
@@ -189,9 +215,27 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     }
 
     PowerUps [] arr = new PowerUps[]{
-            new PowerUps ("Mealworm", "Does some stuff to make u get more hedgies", "Cost: 100", R.drawable.mealworm),
-            new PowerUps ("Hedgehog Safari", "Does some stuff to make u get more hedgies", "Cost: 100", R.drawable.safari),
-            new PowerUps ("Lady Hog", "Does some stuff to make u get more hedgies", "Cost: 100", R.drawable.ladyhog)
+            new PowerUps ("Mealworm", "Hedgie-boys love these little snacks! Lay'em out around the ranch to attract spikers!", "Cost: 100", R.drawable.mealworm),
+            new PowerUps ("Hedgehog Safari", "Hire an employee to help you gather up those snorf-hogs!", "Cost: 100", R.drawable.safari),
+            new PowerUps ("Lady Hog", "Strait from happy scritches HQ, a lady-hog is sure to attract lots of hedgers to the ranch!", "Cost: 100", R.drawable.ladyhog)
     };
+
+    public void setEventFlagsFromSaveState(){
+        try {
+            event1FLag = currentSaveState.getBoolean("Event1");
+            event2FLag = currentSaveState.getBoolean("Event2");
+            event3FLag = currentSaveState.getBoolean("Event3");
+            event4FLag = currentSaveState.getBoolean("Event4");
+            event5FLag = currentSaveState.getBoolean("Event5");
+            event6FLag = currentSaveState.getBoolean("Event6");
+            event7FLag = currentSaveState.getBoolean("Event7");
+            event8FLag = currentSaveState.getBoolean("Event8");
+            event9FLag = currentSaveState.getBoolean("Event9");
+            event10FLag = currentSaveState.getBoolean("Even10");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
