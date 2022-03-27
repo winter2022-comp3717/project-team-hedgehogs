@@ -39,7 +39,7 @@
             android:onClick="returnToGame"
             android:text="Return"
             android:textAlignment="center"
-            android:textColor="@color/army_green"
+            android:textColor="@color/super_dark_green"
             android:textSize="34sp"
             android:textStyle="bold"
             app:strokeColor="@color/grass_green"

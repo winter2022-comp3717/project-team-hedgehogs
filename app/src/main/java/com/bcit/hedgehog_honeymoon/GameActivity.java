@@ -216,9 +216,9 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     }
 
     PowerUps [] arr = new PowerUps[]{
-            new PowerUps ("Mealworm", "Hedgie-boys love these little snacks! Lay'em out around the ranch to attract spikers!", "Cost: 100", R.drawable.mealworm),
-            new PowerUps ("Hedgehog Safari", "Hire an employee to help you gather up those snorf-hogs!", "Cost: 100", R.drawable.safari),
-            new PowerUps ("Lady Hog", "Strait from happy scritches HQ, a lady-hog is sure to attract lots of hedgers to the ranch!", "Cost: 100", R.drawable.ladyhog)
+            new PowerUps ("Mealworm", "Hedgie-boys love these little snacks! Lay'em out around the ranch to attract spikers!", 50, R.drawable.mealworm),
+            new PowerUps ("Hedgehog Safari", "Hire an employee to help you gather up those snorf-hogs!", 350, R.drawable.safari),
+            new PowerUps ("Lady Hog", "Strait from happy scritches HQ, a lady-hog is sure to attract lots of hedgers to the ranch!", 100, R.drawable.ladyhog)
     };
 
     public void setEventFlagsFromSaveState(){

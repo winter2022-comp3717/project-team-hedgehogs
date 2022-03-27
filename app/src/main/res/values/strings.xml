@@ -48,6 +48,7 @@
     <string name="music">Music</string>
     <string name="sfx">Sfx</string>
     <string name="volume">Volume</string>
+    <string name="cost">Cost:</string>
 
 
 </resources>

@@ -42,7 +42,7 @@
         android:onClick="goToGameActivity"
         android:shadowColor="@color/super_dark_green"
         android:text="@string/play"
-        android:textColor="@color/army_green"
+        android:textColor="@color/super_dark_green"
         android:textSize="60sp"
         app:strokeColor="@color/grass_green"
         app:strokeWidth="2dp" />
@@ -60,8 +60,9 @@
 
         android:text="@string/settings"
         android:textAlignment="center"
-        android:textColor="@color/army_green"
+        android:textColor="@color/super_dark_green"
         android:textSize="34sp"
         app:strokeColor="@color/grass_green"
-        app:strokeWidth="2dp" />
+        app:strokeWidth="2dp"
+        tools:ignore="TextContrastCheck" />
 </LinearLayout>

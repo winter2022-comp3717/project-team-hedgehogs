@@ -72,7 +72,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         PowerUps item = localDataSet[position];
         viewHolder.getNameValue().setText(item.getName());
         viewHolder.getDescriptionValue().setText(item.getDescription());
-        viewHolder.getCostValue().setText(item.getCost());
+        viewHolder.getCostValue().setText(Integer.toString(item.getCost()));
         viewHolder.getImg().setImageResource(item.getImageId());
     }
 

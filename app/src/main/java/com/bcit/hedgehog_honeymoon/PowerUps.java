@@ -3,10 +3,10 @@ package com.bcit.hedgehog_honeymoon;
 public class PowerUps {
     String name;
     String description;
-    String cost;
+    int cost;
     int imageId;
 
-    public PowerUps(String name, String description, String cost, int imageId) {
+    public PowerUps(String name, String description, int cost, int imageId) {
         this.name = name;
         this.description = description;
         this.cost = cost;
@@ -37,11 +37,11 @@ public class PowerUps {
         this.imageId = imageId;
     }
 
-    public String getCost() {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 }

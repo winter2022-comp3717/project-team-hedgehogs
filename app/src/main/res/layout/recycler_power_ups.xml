@@ -45,13 +45,20 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView_power_up_cost"
+                    android:id="@+id/textView_power_up_cost_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="sans-serif"
-                    android:text="TextView"
+                    android:text="@string/cost"
                     android:textColor="@color/super_dark_green" />
+
+                <TextView
+                    android:id="@+id/textView_power_up_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
 
             </LinearLayout>
 
