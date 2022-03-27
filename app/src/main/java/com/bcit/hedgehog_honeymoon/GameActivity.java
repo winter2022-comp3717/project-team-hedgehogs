@@ -19,9 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONException;
 
 public class GameActivity extends AppCompatActivity implements Choreographer.FrameCallback{
-
-
-
     public SaveState currentSaveState;
     public SaveManager saveManager;
 
@@ -75,17 +72,16 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         assignHedgehogsFromSave();
         setEventFlagsFromSaveState();
         updateUI();
-
-
-
-
     }
 
 //    @Override
 //    protected void onResume() {
 //        super.onResume();
 //        handler.postDelayed(runnable = new Runnable() {
-//            handler.postDelayed(runnable, delay);
+//            @Override
+//            public void run() {
+//
+//            }handler.postDelayed(runnable, delay);
 //        }, delay);
 //    }
 
