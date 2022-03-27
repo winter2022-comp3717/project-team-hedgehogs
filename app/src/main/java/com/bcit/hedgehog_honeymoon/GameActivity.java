@@ -91,7 +91,48 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         updateUI();
         System.out.println("Clicked the hed hog!");
         System.out.println("Number of hedgehogs : " + totalHedgehogs);
-        saveManager.saveSaveStateToDevice();
+        //Save at each manual click
+        updateSaveState();
+        saveManager.saveSaveStateToDevice(currentSaveState);
+    }
+
+    public void updateSaveState(){
+        try {
+            currentSaveState.put("totalHedgehogs", totalHedgehogs);
+            currentSaveState.put("currentHedgehogs", currentHedgehogs);
+
+            currentSaveState.put("SFX", false);
+            currentSaveState.put("Music", false);
+            currentSaveState.put("Volume", 50);
+
+            currentSaveState.put("numberOfUpgrade1", 0);
+            currentSaveState.put("numberOfUpgrade2", 0);
+            currentSaveState.put("numberOfUpgrade3", 0);
+            currentSaveState.put("numberOfUpgrade4", 0);
+            currentSaveState.put("numberOfUpgrade5", 0);
+            currentSaveState.put("numberOfUpgrade6", 0);
+            currentSaveState.put("numberOfUpgrade7", 0);
+            currentSaveState.put("numberOfUpgrade8", 0);
+            currentSaveState.put("numberOfUpgrade9", 0);
+
+            currentSaveState.put("Event1", false);
+            currentSaveState.put("Event2", false);
+            currentSaveState.put("Event3", false);
+            currentSaveState.put("Event4", false);
+            currentSaveState.put("Event5", false);
+            currentSaveState.put("Event6", false);
+            currentSaveState.put("Event7", false);
+            currentSaveState.put("Event8", false);
+            currentSaveState.put("Event9", false);
+            currentSaveState.put("Event10", false);
+            currentSaveState.put("Event11", false);
+            currentSaveState.put("Event12", false);
+            currentSaveState.put("Event13", false);
+            currentSaveState.put("Event14", false);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     //Increment by a larger amount, for automation

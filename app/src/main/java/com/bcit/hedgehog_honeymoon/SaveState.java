@@ -4,15 +4,26 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.JsonReader;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import java.io.File;
+import java.util.Scanner;
 
-public class SaveState extends JSONObject{ }
+public class SaveState extends JSONObject{
+    public SaveState(String jsonString) throws JSONException {
+        super(jsonString);
+    }
+    public SaveState(){
+
+    }
+}
 
 class SaveManager{
     SaveState currentState;
@@ -34,14 +45,44 @@ class SaveManager{
         return currentState;
     }
 
-    //Once we have saving figured out, this will be the method to save
+    //Save the currently loaded saveState onto the disk
     public void saveSaveStateToDevice(){
-        File file = getSaveStateFromDisk();
+        File saveFile;
+        if(doesASaveStateExist()){
+            saveFile = getSaveStateFromDisk();
+        } else {
+            saveFile = new File(context.getFilesDir(), "hedgeHogSave.json");
+        }
+
         try {
-            FileWriter writer = new FileWriter(file);
+            FileWriter writer = new FileWriter(saveFile);
             writer.write(currentState.toString());
+            writer.flush();
+            writer.close();
             System.out.println(currentState.toString());
             System.out.println("A string");
+        } catch (IOException e) {
+            System.out.println("Error saving file");
+            e.printStackTrace();
+        }
+
+    }
+
+    //Overloaded function that takes the new save state.
+    public void saveSaveStateToDevice(SaveState stateToSave){
+        File saveFile;
+        if(doesASaveStateExist()){
+            saveFile = getSaveStateFromDisk();
+        } else {
+            saveFile = new File(context.getFilesDir(), "hedgeHogSave.json");
+        }
+
+        try {
+            FileWriter writer = new FileWriter(saveFile);
+            writer.write(currentState.toString());
+            writer.flush();
+            writer.close();
+            System.out.println(currentState.toString());
         } catch (IOException e) {
             System.out.println("Error saving file");
             e.printStackTrace();
@@ -52,39 +93,40 @@ class SaveManager{
     //Get the File objet from Disk
     public File getSaveStateFromDisk(){
         File file = new File(context.getFilesDir(), "hedgeHogSave.json");
-        try {
-            if(file.createNewFile()){
-                System.out.println("New file created");
-            } else {
+
+            if(doesASaveStateExist()){
                 System.out.println("File already exists");
+            } else {
+                createNewSaveState();
+                saveSaveStateToDevice();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         return file;
     }
 
     //Once we have saving figured out, this will be how we load
     public void loadSaveGameFromDevice(){
         File file = getSaveStateFromDisk();
-//        JsonReader reader = new JsonReader(file);
-//
-//        SaveState stateFromDisk = reader.readObject();
+        try {
+            Scanner scan = new Scanner(file);
+            String JSONString = scan.next();
+            currentState = (SaveState) new SaveState(JSONString);;
+        } catch (FileNotFoundException | JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     //TODO Add a way for this to actually check a thing
     public boolean doesASaveStateExist(){
         File file = new File(context.getFilesDir(), "hedgeHogSave.json");
-        try {
-            if(file.createNewFile()){
-                return false;
-            } else {
+
+            if(file.exists() && !file.isDirectory()){
                 return true;
+            } else {
+                return false;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+
     }
 
     //Delete the save state from the game and from the device. Careful with this boy.
@@ -99,8 +141,8 @@ class SaveManager{
     public void createNewSaveState(){
         currentState = new SaveState();
         try {
-            currentState.put("currentHedgehogs", 69);
-            currentState.put("totalHedgehogs", 40);
+            currentState.put("currentHedgehogs", 0);
+            currentState.put("totalHedgehogs", 0);
 
             currentState.put("numberOfUpgrade1", 0);
             currentState.put("numberOfUpgrade2", 0);
@@ -130,5 +172,6 @@ class SaveManager{
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        saveSaveStateToDevice();
     }
 }
