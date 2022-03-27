@@ -43,6 +43,8 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public static boolean event9FLag = false;
     public static boolean event10FLag = false;
 
+    private SoundPlayer soundPlayer;
+
     Handler handler = new Handler();
     int delay = 100;
 
@@ -54,6 +56,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         currentHedgeHogTextView = findViewById(R.id.textView_game_current);
         gameIsRunning = true;
         hedgehogPicture = (ImageView) findViewById(R.id.imageView_game);
+        soundPlayer = new SoundPlayer(this);
 
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_game);
@@ -67,6 +70,9 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
             @Override
             public void onClick(View view) {
                 incrementHedgehog();
+                System.out.println("@@@@@@@@@@@@@@@@@");
+                System.out.println("Test");
+                hitButton();
             }
         });
 
@@ -251,6 +257,10 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void hitButton() {
+        soundPlayer.playHitSound();
     }
 
 }

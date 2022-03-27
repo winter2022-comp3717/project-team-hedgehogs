@@ -21,10 +21,14 @@ public class MainActivity extends AppCompatActivity {
 //    BackgroundSound mBackgroundSound = new BackgroundSound();
     private Intent musicService;
 
+    private SoundPlayer soundPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        soundPlayer = new SoundPlayer(this);
 
         FragmentTransaction fragmentTransaction;
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -51,10 +55,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void openSettings() {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainerView_main, new SettingsFragment());
-        fragmentTransaction.commit();
+    public void hitButton() {
+        soundPlayer.playHitSound();
     }
 
 }
