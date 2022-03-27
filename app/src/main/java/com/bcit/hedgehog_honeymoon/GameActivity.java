@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Choreographer;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +43,9 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public static boolean event9FLag = false;
     public static boolean event10FLag = false;
 
+    Handler handler = new Handler();
+    int delay = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +76,18 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         setEventFlagsFromSaveState();
         updateUI();
 
+
+
+
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        handler.postDelayed(runnable = new Runnable() {
+//            handler.postDelayed(runnable, delay);
+//        }, delay);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

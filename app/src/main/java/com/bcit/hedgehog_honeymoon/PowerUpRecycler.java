@@ -74,6 +74,8 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         viewHolder.getDescriptionValue().setText(item.getDescription());
         viewHolder.getCostValue().setText(Integer.toString(item.getCost()));
         viewHolder.getImg().setImageResource(item.getImageId());
+
+        
     }
 
     // Return the size of your dataset (invoked by the layout manager)
