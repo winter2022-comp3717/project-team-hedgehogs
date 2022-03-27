@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 
 /**
@@ -26,6 +27,8 @@ public class SettingsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private SoundPlayer soundPlayer;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -84,5 +87,47 @@ public class SettingsFragment extends Fragment {
                 }
             }
         });
+
+//        Button testButton = getView().findViewById(R.id.testButton_settings);
+//        Button testImageViewGame = getView().findViewById(R.id.button_main_settings);
+//        System.out.println(testButton);
+//        soundPlayer = new SoundPlayer(getActivity());
+//        testButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                soundPlayer.playHitSound();
+//                System.out.println(testButton);
+//                System.out.println("test reach into game activity");
+//                System.out.println(testImageViewGame);
+//            }
+//        });
+//
+//        SwitchCompat switchViewSFX = getView().findViewById(R.id.switch_settings_sfx);
+//
+//        switchViewSFX.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked){
+//                    testButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            soundPlayer.playHitSound();
+//                            System.out.println(testButton);
+//                            System.out.println("test reach into game activity");
+//                            System.out.println(testImageViewGame);
+//                        }
+//                    });
+//                } else {
+//                    testButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            System.out.println("Dud");
+//                        }
+//                    });
+//                }
+//            }
+//        });
+
     }
+
+
 }
