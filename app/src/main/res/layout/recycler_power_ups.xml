@@ -30,7 +30,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -62,15 +62,34 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView_power_up_desc"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:text="some details of power up go here woo X100 hedgies!"
-                android:textColor="@color/super_dark_green"
-                android:textSize="14sp" />
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/textView_recycler_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="text about this power up goes here make it neat.... or else " />
+
+                <TextView
+                    android:id="@+id/textView_recycler_owned"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="200dp"
+                    android:layout_marginTop="35dp"
+                    android:text="Owned: " />
+
+                <TextView
+                    android:id="@+id/textView_recycler_quantity"
+                    android:layout_width="28dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="255dp"
+                    android:layout_marginTop="35dp"
+                    android:text="owned: 5" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

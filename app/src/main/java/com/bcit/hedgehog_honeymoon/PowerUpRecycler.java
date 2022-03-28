@@ -29,7 +29,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
             super(view);
 
             nameValue = view.findViewById(R.id.textView_power_up_name);
-            descriptionValue = view.findViewById(R.id.textView_power_up_desc);
+            descriptionValue = view.findViewById(R.id.textView_recycler_desc);
             costValue = view.findViewById(R.id.textView_power_up_cost);
             img = view.findViewById(R.id.imageView_power_ups);
             //numberPurchased = view.findViewById(R.id.)
