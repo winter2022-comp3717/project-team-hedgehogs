@@ -94,12 +94,6 @@
             app:strokeColor="@color/grass_green"
             app:strokeWidth="2dp" />
 
-        <Button
-            android:id="@+id/testButton_settings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
