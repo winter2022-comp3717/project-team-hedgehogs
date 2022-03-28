@@ -116,7 +116,7 @@ public class GameActivity extends AppCompatActivity{
             startActivity(intent);
         } else if(item.getItemId() == R.id.Menu_settings) {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("TRUE", true);
+            intent.putExtra("OPENSETTINGS", true);
             startActivity(intent);
         } else {
             System.out.println(item.getTitle());

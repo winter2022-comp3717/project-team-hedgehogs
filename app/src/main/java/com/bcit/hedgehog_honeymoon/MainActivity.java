@@ -36,8 +36,17 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         View dummyView = findViewById(R.id.fragmentContainerView_main);
         PlayBackgroundSound(dummyView);
+        System.out.println(getIntent());
 
-    }
+        if(getIntent().hasExtra("OPENSETTINGS")){
+                System.out.println("CONTAINS KEY");
+                openSettings();
+            } else {
+                System.out.println("NO KEY HERE");
+            }
+        }
+
+
 
     public void PlayBackgroundSound(View view) {
         musicService = new Intent(MainActivity.this, BackgroundSoundService.class);
@@ -50,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openSettings(View v) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainerView_main, new SettingsFragment());
+        fragmentTransaction.commit();
+    }
+
+    public void openSettings() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainerView_main, new SettingsFragment());
         fragmentTransaction.commit();
