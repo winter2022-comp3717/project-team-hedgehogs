@@ -28,13 +28,13 @@ public class GameActivity extends AppCompatActivity{
     public ImageView hedgehogPicture;
     public boolean gameIsRunning;
 
-    int numberOfMealWorms;
+    public static int numberOfMealWorms;
     int mealWormPrice;
 
-    int numberOfSafaris;
+    public static int numberOfSafaris;
     int safariPrice;
 
-    int numberOfLadyHogs;
+    public static int numberOfLadyHogs;
     int ladyHogPrice;
 
     public static boolean event1FLag = false;
@@ -51,7 +51,7 @@ public class GameActivity extends AppCompatActivity{
     private SoundPlayer soundPlayer;
 
     Handler handler = new Handler();
-    int delay = 100;
+    int delay = 1000;
     Runnable runnable;
 
     @Override
@@ -191,6 +191,7 @@ public class GameActivity extends AppCompatActivity{
     public void updateUI(){
         totalHedgeHogTextView.setText(Integer.toString(totalHedgehogs));
         currentHedgeHogTextView.setText(Integer.toString(currentHedgehogs));
+        setUpRecyclerView(arr);
     }
 
     public void assignHedgehogsFromSave(){
@@ -208,6 +209,8 @@ public class GameActivity extends AppCompatActivity{
     public void checkForAutomation(){
         float totalHedgeHogsToAdd = 0;
         totalHedgeHogsToAdd += numberOfMealWorms * 0.5;
+        totalHedgeHogsToAdd += numberOfSafaris;
+        totalHedgeHogsToAdd += numberOfLadyHogs * 2;
         incrementHedgehog((int) totalHedgeHogsToAdd);
         updateUI();
     }

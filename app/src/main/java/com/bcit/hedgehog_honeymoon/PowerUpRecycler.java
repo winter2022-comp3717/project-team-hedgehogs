@@ -22,6 +22,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         private final TextView nameValue;
         private final TextView descriptionValue;
         private final TextView costValue;
+        //private final TextView numberPurchased;
         private final ImageView img;
 
         public ViewHolder(View view) {
@@ -31,6 +32,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
             descriptionValue = view.findViewById(R.id.textView_power_up_desc);
             costValue = view.findViewById(R.id.textView_power_up_cost);
             img = view.findViewById(R.id.imageView_power_ups);
+            //numberPurchased = view.findViewById(R.id.)
         }
 
         public TextView getNameValue() {
@@ -77,12 +79,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         viewHolder.getCostValue().setText(Integer.toString(item.getCost()));
         viewHolder.getImg().setImageResource(item.getImageId());
 
-        viewHolder.getImg().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("You clicked a " + viewHolder.getNameValue().getText());
-            }
-        });
+        viewHolder
     }
 
     // Return the size of your dataset (invoked by the layout manager)
