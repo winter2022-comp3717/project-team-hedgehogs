@@ -174,4 +174,8 @@ class SaveManager{
         }
         saveSaveStateToDevice();
     }
+
+    public void clearAllData(){
+        createNewSaveState();
+    }
 }
