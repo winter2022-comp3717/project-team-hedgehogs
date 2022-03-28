@@ -105,8 +105,12 @@ class SaveManager{
         File file = getSaveStateFromDisk();
         try {
             Scanner scan = new Scanner(file);
-            String JSONString = scan.next();
-            currentState = (SaveState) new SaveState(JSONString);;
+            if(scan.hasNext()){
+                String JSONString = scan.next();
+                currentState = (SaveState) new SaveState(JSONString);
+            } else {
+                createNewSaveState();
+            }
         } catch (FileNotFoundException | JSONException e) {
             e.printStackTrace();
         }

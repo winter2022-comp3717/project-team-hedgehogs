@@ -22,7 +22,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         private final TextView nameValue;
         private final TextView descriptionValue;
         private final TextView costValue;
-        //private final TextView numberPurchased;
+        private final TextView numberPurchased;
         private final ImageView img;
 
         public ViewHolder(View view) {
@@ -32,7 +32,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
             descriptionValue = view.findViewById(R.id.textView_recycler_desc);
             costValue = view.findViewById(R.id.textView_power_up_cost);
             img = view.findViewById(R.id.imageView_power_ups);
-            //numberPurchased = view.findViewById(R.id.)
+            numberPurchased = view.findViewById(R.id.textView_recycler_quantity);
         }
 
         public TextView getNameValue() {
@@ -47,6 +47,7 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         public ImageView getImg() {
             return img;
         }
+        public TextView getNumberPurchased() {return numberPurchased;}
     }
 
     /**
@@ -79,7 +80,16 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         viewHolder.getCostValue().setText(Integer.toString(item.getCost()));
         viewHolder.getImg().setImageResource(item.getImageId());
 
-        //viewHolder
+        if(position == 0){
+            viewHolder.getNumberPurchased()
+                    .setText(Integer.toString(GameActivity.numberOfMealWorms));
+        } else if (position == 1){
+            viewHolder.getNumberPurchased()
+                    .setText(Integer.toString(GameActivity.numberOfSafaris));
+        } else if (position == 2){
+            viewHolder.getNumberPurchased()
+                    .setText(Integer.toString(GameActivity.numberOfLadyHogs));
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

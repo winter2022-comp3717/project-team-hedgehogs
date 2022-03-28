@@ -23,8 +23,8 @@ public class GameActivity extends AppCompatActivity{
 
     public TextView totalHedgeHogTextView;
     public TextView currentHedgeHogTextView;
-    public int totalHedgehogs;
-    public int currentHedgehogs;
+    public float totalHedgehogs;
+    public float currentHedgehogs;
     public ImageView hedgehogPicture;
     public boolean gameIsRunning;
 
@@ -36,6 +36,7 @@ public class GameActivity extends AppCompatActivity{
 
     public static int numberOfLadyHogs;
     int ladyHogPrice;
+
 
     public static boolean event1FLag = false;
     public static boolean event2FLag = false;
@@ -51,7 +52,7 @@ public class GameActivity extends AppCompatActivity{
     private SoundPlayer soundPlayer;
 
     Handler handler = new Handler();
-    int delay = 1000;
+    int delay = 100;
     Runnable runnable;
 
     @Override
@@ -178,9 +179,10 @@ public class GameActivity extends AppCompatActivity{
     }
 
     //Increment by a larger amount, for automation
-    public void incrementHedgehog(int newHedgehogs){
+    public void incrementHedgehog(float newHedgehogs){
         totalHedgehogs+= newHedgehogs;
         currentHedgehogs += newHedgehogs;
+        updateUI();
     }
 
     public void removeHedgehogs(int numberToRemove){
@@ -189,9 +191,17 @@ public class GameActivity extends AppCompatActivity{
 
     //Update the UI on screen
     public void updateUI(){
-        totalHedgeHogTextView.setText(Integer.toString(totalHedgehogs));
-        currentHedgeHogTextView.setText(Integer.toString(currentHedgehogs));
+        totalHedgeHogTextView.setText(formatHedgehogs(totalHedgehogs));
+        currentHedgeHogTextView.setText(formatHedgehogs(currentHedgehogs));
         setUpRecyclerView(arr);
+    }
+
+    public String formatHedgehogs(float hedHogFloat){
+        if(hedHogFloat == (long) hedHogFloat){
+            return String.format("%.2f", (float) hedHogFloat);
+        } else {
+            return String.format("%.2f", hedHogFloat);
+        }
     }
 
     public void assignHedgehogsFromSave(){
@@ -208,38 +218,37 @@ public class GameActivity extends AppCompatActivity{
 
     public void checkForAutomation(){
         float totalHedgeHogsToAdd = 0;
-        totalHedgeHogsToAdd += numberOfMealWorms * 0.5;
-        totalHedgeHogsToAdd += numberOfSafaris;
-        totalHedgeHogsToAdd += numberOfLadyHogs * 2;
-        incrementHedgehog((int) totalHedgeHogsToAdd);
-        updateUI();
+        totalHedgeHogsToAdd += (numberOfMealWorms * 0.25) / 10f;
+        totalHedgeHogsToAdd += numberOfSafaris / 10f;
+        totalHedgeHogsToAdd += (numberOfLadyHogs * 5) / 10f;
+        incrementHedgehog((float) totalHedgeHogsToAdd);
     }
 
     public void checkForEvents(){
         if(totalHedgehogs > 10 && !event1FLag) {
-            playEvent(1);
             event1FLag = true;
+            playEvent(1);
             return;
         }
         if(totalHedgehogs > 100 && !event2FLag){
-            playEvent(2);
             event2FLag = true;
+            playEvent(2);
         }
         if(totalHedgehogs > 500 && !event3FLag){
-            playEvent(3);
             event3FLag = true;
+            playEvent(3);
         }
         if(totalHedgehogs > 1250 && !event4FLag){
-            playEvent(4);
             event4FLag = true;
+            playEvent(4);
         }
         if(totalHedgehogs > 3000 && !event5FLag){
-            playEvent(5);
             event5FLag = true;
+            playEvent(5);
         }
         if(totalHedgehogs > 10000 && !event6FLag){
-            playEvent(6);
             event6FLag = true;
+            playEvent(6);
         }
     }
 
@@ -249,7 +258,23 @@ public class GameActivity extends AppCompatActivity{
         if(eventNumber == 1){
             intent.putExtra("TEXT", R.string.event_1);
             intent.putExtra("IMG", R.drawable.tapp);
+        } else if (eventNumber == 2){
+            intent.putExtra("TEXT", R.string.event_2);
+            intent.putExtra("IMG", R.drawable.tapp);
+        } else if (eventNumber == 3){
+            intent.putExtra("TEXT", R.string.event_3);
+            intent.putExtra("IMG", R.drawable.kitkat);
+        } else if (eventNumber == 4){
+            intent.putExtra("TEXT", R.string.event_4);
+            intent.putExtra("IMG", R.drawable.tapp);
+        } else if (eventNumber == 5){
+            intent.putExtra("TEXT", R.string.event_5);
+            intent.putExtra("IMG", R.drawable.safari);
+        } else if (eventNumber == 6){
+            intent.putExtra("TEXT", R.string.event_6);
+            intent.putExtra("IMG", R.drawable.kitkat);
         }
+
         startActivity(intent);
     }
 
