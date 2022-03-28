@@ -79,7 +79,7 @@
             android:textSize="40sp" />
 
         <Button
-            android:id="@+id/button_main_settings"
+            android:id="@+id/button_main_settings_clear"
             android:layout_width="335dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
