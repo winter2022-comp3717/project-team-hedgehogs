@@ -29,13 +29,13 @@ public class GameActivity extends AppCompatActivity{
     public boolean gameIsRunning;
 
     public static int numberOfMealWorms;
-    int mealWormPrice;
+    public static int mealWormPrice;
 
     public static int numberOfSafaris;
-    int safariPrice;
+    public static int safariPrice;
 
     public static int numberOfLadyHogs;
-    int ladyHogPrice;
+    public static int ladyHogPrice;
 
 
     public static boolean event1FLag = false;
@@ -193,6 +193,7 @@ public class GameActivity extends AppCompatActivity{
     public void updateUI(){
         totalHedgeHogTextView.setText(formatHedgehogs(totalHedgehogs));
         currentHedgeHogTextView.setText(formatHedgehogs(currentHedgehogs));
+        updatePrices();
         setUpRecyclerView(arr);
     }
 
@@ -218,7 +219,7 @@ public class GameActivity extends AppCompatActivity{
 
     public void checkForAutomation(){
         float totalHedgeHogsToAdd = 0;
-        totalHedgeHogsToAdd += (numberOfMealWorms * 0.25) / 10f;
+        totalHedgeHogsToAdd += (numberOfMealWorms * 0.5) / 10f;
         totalHedgeHogsToAdd += numberOfSafaris / 10f;
         totalHedgeHogsToAdd += (numberOfLadyHogs * 5) / 10f;
         incrementHedgehog((float) totalHedgeHogsToAdd);
@@ -326,6 +327,12 @@ public class GameActivity extends AppCompatActivity{
         updateUI();
     }
 
+    public void updatePrices(){
+        mealWormPrice = 50 + (numberOfMealWorms * 25);
+        safariPrice = 250 + (numberOfSafaris * 75);
+        ladyHogPrice = 500 + (numberOfLadyHogs * 150);
+    }
+
     public void incrementLadies(){
         if(currentHedgehogs > ladyHogPrice){
             currentHedgehogs -= ladyHogPrice;
@@ -363,6 +370,10 @@ public class GameActivity extends AppCompatActivity{
             numberOfMealWorms =  currentSaveState.getInt("mealworms");
             numberOfSafaris =  currentSaveState.getInt("safaris");
             numberOfLadyHogs =  currentSaveState.getInt("ladyhogs");
+
+            mealWormPrice = 50 + (numberOfMealWorms * 25);
+            safariPrice = 250 + (numberOfSafaris * 75);
+            ladyHogPrice = 500 + (numberOfLadyHogs * 150);
         } catch (JSONException e) {
             e.printStackTrace();
         }

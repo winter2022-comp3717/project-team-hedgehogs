@@ -83,12 +83,18 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         if(position == 0){
             viewHolder.getNumberPurchased()
                     .setText(Integer.toString(GameActivity.numberOfMealWorms));
+            viewHolder.getCostValue()
+                    .setText(Integer.toString(GameActivity.mealWormPrice));
         } else if (position == 1){
             viewHolder.getNumberPurchased()
                     .setText(Integer.toString(GameActivity.numberOfSafaris));
+            viewHolder.getCostValue()
+                    .setText(Integer.toString(GameActivity.safariPrice));
         } else if (position == 2){
             viewHolder.getNumberPurchased()
                     .setText(Integer.toString(GameActivity.numberOfLadyHogs));
+            viewHolder.getCostValue()
+                    .setText(Integer.toString(GameActivity.ladyHogPrice));
         }
     }
 
