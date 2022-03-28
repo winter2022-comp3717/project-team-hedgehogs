@@ -233,22 +233,27 @@ public class GameActivity extends AppCompatActivity{
         if(totalHedgehogs > 100 && !event2FLag){
             event2FLag = true;
             playEvent(2);
+            return;
         }
         if(totalHedgehogs > 500 && !event3FLag){
             event3FLag = true;
             playEvent(3);
+            return;
         }
         if(totalHedgehogs > 1250 && !event4FLag){
             event4FLag = true;
             playEvent(4);
+            return;
         }
         if(totalHedgehogs > 3000 && !event5FLag){
             event5FLag = true;
             playEvent(5);
+            return;
         }
         if(totalHedgehogs > 10000 && !event6FLag){
             event6FLag = true;
             playEvent(6);
+            return;
         }
     }
 
