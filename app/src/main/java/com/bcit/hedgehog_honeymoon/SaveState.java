@@ -140,6 +140,10 @@ class SaveManager{
             currentState.put("currentHedgehogs", 0);
             currentState.put("totalHedgehogs", 0);
 
+            currentState.put("mealworms", 0);
+            currentState.put("safaris", 0);
+            currentState.put("ladyhogs", 0);
+
             currentState.put("numberOfUpgrade1", 0);
             currentState.put("numberOfUpgrade2", 0);
             currentState.put("numberOfUpgrade3", 0);

@@ -1,5 +1,7 @@
 package com.bcit.hedgehog_honeymoon;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +77,12 @@ public class PowerUpRecycler extends RecyclerView.Adapter<PowerUpRecycler.ViewHo
         viewHolder.getCostValue().setText(Integer.toString(item.getCost()));
         viewHolder.getImg().setImageResource(item.getImageId());
 
-        
+        viewHolder.getImg().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("You clicked a " + viewHolder.getNameValue().getText());
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

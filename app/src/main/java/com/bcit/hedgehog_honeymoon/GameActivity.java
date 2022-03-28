@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Choreographer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
 
-public class GameActivity extends AppCompatActivity implements Choreographer.FrameCallback{
+public class GameActivity extends AppCompatActivity{
     public SaveState currentSaveState;
     public SaveManager saveManager;
 
@@ -28,6 +27,15 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public int currentHedgehogs;
     public ImageView hedgehogPicture;
     public boolean gameIsRunning;
+
+    int numberOfMealWorms;
+    int mealWormPrice;
+
+    int numberOfSafaris;
+    int safariPrice;
+
+    int numberOfLadyHogs;
+    int ladyHogPrice;
 
     public static boolean event1FLag = false;
     public static boolean event2FLag = false;
@@ -44,6 +52,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
 
     Handler handler = new Handler();
     int delay = 100;
+    Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +72,11 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         setUpRecyclerView(arr);
 
+
         hedgehogPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 incrementHedgehog();
-                System.out.println("@@@@@@@@@@@@@@@@@");
-                System.out.println("Test");
                 hitButton();
             }
         });
@@ -77,19 +85,21 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         currentSaveState = saveManager.getCurrentSaveState();
         assignHedgehogsFromSave();
         setEventFlagsFromSaveState();
+        setUpgradesFromSaveState();
         updateUI();
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        handler.postDelayed(runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }handler.postDelayed(runnable, delay);
-//        }, delay);
-//    }
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                checkForAutomation();
+            }
+        }, delay);
+        super.onResume();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -136,6 +146,10 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
             currentSaveState.put("SFX", false);
             currentSaveState.put("Music", false);
             currentSaveState.put("Volume", 50);
+
+            currentSaveState.put("mealworms", numberOfMealWorms);
+            currentSaveState.put("safaris", numberOfSafaris);
+            currentSaveState.put("ladyhogs", numberOfLadyHogs);
 
             currentSaveState.put("numberOfUpgrade1", 0);
             currentSaveState.put("numberOfUpgrade2", 0);
@@ -191,18 +205,11 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
 
     }
 
-    //This will execute every frame for hedgehog automation
-    public void doFrame(long time){
-        checkForAutomation();
-        updateUI();
-        checkForEvents();
-        System.out.println("This is happening a lot!");
-    }
-
-    
-
     public void checkForAutomation(){
-        //check for new hedgehogs from the shop items, update hedgehog counter
+        float totalHedgeHogsToAdd = 0;
+        totalHedgeHogsToAdd += numberOfMealWorms * 0.5;
+        incrementHedgehog((int) totalHedgeHogsToAdd);
+        updateUI();
     }
 
     public void checkForEvents(){
@@ -229,6 +236,50 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         PowerUpRecycler adapter = new PowerUpRecycler(data);
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
+
+        rv.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, rv ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        if(position == 0){
+                            incrementMealWorms();
+                        }
+                        if(position == 1){
+                            incrementSafari();
+                        }
+                        if(position == 2){
+                            incrementLadies();
+                        }
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
+    }
+
+    public void incrementMealWorms(){
+        if(currentHedgehogs > mealWormPrice){
+            currentHedgehogs -= mealWormPrice;
+            numberOfMealWorms++;
+        }
+        updateUI();
+    }
+
+    public void incrementSafari(){
+        if(currentHedgehogs > safariPrice){
+            currentHedgehogs -= safariPrice;
+            numberOfSafaris++;
+        }
+        updateUI();
+    }
+
+    public void incrementLadies(){
+        if(currentHedgehogs > ladyHogPrice){
+            currentHedgehogs -= ladyHogPrice;
+            numberOfLadyHogs++;
+        }
+        updateUI();
     }
 
     PowerUps [] arr = new PowerUps[]{
@@ -250,6 +301,16 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
             event9FLag = currentSaveState.getBoolean("Event9");
             event10FLag = currentSaveState.getBoolean("Even10");
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setUpgradesFromSaveState(){
+        try {
+            numberOfMealWorms =  currentSaveState.getInt("mealworms");
+            numberOfSafaris =  currentSaveState.getInt("safaris");
+            numberOfLadyHogs =  currentSaveState.getInt("ladyhogs");
         } catch (JSONException e) {
             e.printStackTrace();
         }
