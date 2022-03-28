@@ -86,7 +86,7 @@
 
             android:backgroundTint="@color/nice_green"
             android:fontFamily="@font/amatica_sc_bold"
-            android:onClick="openSettings"
+            android:onClick="clearData"
             android:text="@string/clearDataText_button"
             android:textAlignment="center"
             android:textColor="@color/super_dark_green"

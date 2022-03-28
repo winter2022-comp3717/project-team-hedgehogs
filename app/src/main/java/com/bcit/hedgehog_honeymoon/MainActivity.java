@@ -59,4 +59,9 @@ public class MainActivity extends AppCompatActivity {
         soundPlayer.playHitSound();
     }
 
+    public void clearData(View view){
+        SaveManager saveManager = new SaveManager(getApplicationContext());
+        saveManager.clearAllData();
+    }
+
 }

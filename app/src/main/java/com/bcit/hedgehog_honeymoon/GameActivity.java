@@ -216,11 +216,30 @@ public class GameActivity extends AppCompatActivity{
     }
 
     public void checkForEvents(){
-        //DEBUG
         if(totalHedgehogs > 10 && !event1FLag) {
             playEvent(1);
             event1FLag = true;
             return;
+        }
+        if(totalHedgehogs > 100 && !event2FLag){
+            playEvent(2);
+            event2FLag = true;
+        }
+        if(totalHedgehogs > 500 && !event3FLag){
+            playEvent(3);
+            event3FLag = true;
+        }
+        if(totalHedgehogs > 1250 && !event4FLag){
+            playEvent(4);
+            event4FLag = true;
+        }
+        if(totalHedgehogs > 3000 && !event5FLag){
+            playEvent(5);
+            event5FLag = true;
+        }
+        if(totalHedgehogs > 10000 && !event6FLag){
+            playEvent(6);
+            event6FLag = true;
         }
     }
 
