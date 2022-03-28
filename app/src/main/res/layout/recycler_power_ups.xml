@@ -65,7 +65,7 @@
             <TextView
                 android:id="@+id/textView_power_up_desc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:text="some details of power up go here woo X100 hedgies!"

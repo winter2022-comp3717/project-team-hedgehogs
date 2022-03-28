@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Choreographer;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONException;
 
-public class GameActivity extends AppCompatActivity implements Choreographer.FrameCallback{
-
-
-
+public class GameActivity extends AppCompatActivity{
     public SaveState currentSaveState;
     public SaveManager saveManager;
 
@@ -30,6 +27,15 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public int currentHedgehogs;
     public ImageView hedgehogPicture;
     public boolean gameIsRunning;
+
+    public static int numberOfMealWorms;
+    int mealWormPrice;
+
+    public static int numberOfSafaris;
+    int safariPrice;
+
+    public static int numberOfLadyHogs;
+    int ladyHogPrice;
 
     public static boolean event1FLag = false;
     public static boolean event2FLag = false;
@@ -42,6 +48,12 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public static boolean event9FLag = false;
     public static boolean event10FLag = false;
 
+    private SoundPlayer soundPlayer;
+
+    Handler handler = new Handler();
+    int delay = 1000;
+    Runnable runnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +62,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         currentHedgeHogTextView = findViewById(R.id.textView_game_current);
         gameIsRunning = true;
         hedgehogPicture = (ImageView) findViewById(R.id.imageView_game);
+        soundPlayer = new SoundPlayer(this);
 
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_game);
@@ -59,10 +72,12 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         setUpRecyclerView(arr);
 
+
         hedgehogPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 incrementHedgehog();
+                hitButton();
             }
         });
 
@@ -70,8 +85,20 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         currentSaveState = saveManager.getCurrentSaveState();
         assignHedgehogsFromSave();
         setEventFlagsFromSaveState();
+        setUpgradesFromSaveState();
         updateUI();
+    }
 
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = new Runnable() {
+            @Override
+            public void run() {
+                handler.postDelayed(runnable, delay);
+                checkForAutomation();
+            }
+        }, delay);
+        super.onResume();
     }
 
     @Override
@@ -120,6 +147,10 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
             currentSaveState.put("Music", false);
             currentSaveState.put("Volume", 50);
 
+            currentSaveState.put("mealworms", numberOfMealWorms);
+            currentSaveState.put("safaris", numberOfSafaris);
+            currentSaveState.put("ladyhogs", numberOfLadyHogs);
+
             currentSaveState.put("numberOfUpgrade1", 0);
             currentSaveState.put("numberOfUpgrade2", 0);
             currentSaveState.put("numberOfUpgrade3", 0);
@@ -160,6 +191,7 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
     public void updateUI(){
         totalHedgeHogTextView.setText(Integer.toString(totalHedgehogs));
         currentHedgeHogTextView.setText(Integer.toString(currentHedgehogs));
+        setUpRecyclerView(arr);
     }
 
     public void assignHedgehogsFromSave(){
@@ -174,23 +206,17 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
 
     }
 
-    //This will execute every frame for hedgehog automation
-    public void doFrame(long time){
-        checkForAutomation();
-        updateUI();
-        checkForEvents();
-        System.out.println("This is happening a lot!");
-    }
-
-    
-
     public void checkForAutomation(){
-        //check for new hedgehogs from the shop items, update hedgehog counter
+        float totalHedgeHogsToAdd = 0;
+        totalHedgeHogsToAdd += numberOfMealWorms * 0.5;
+        totalHedgeHogsToAdd += numberOfSafaris;
+        totalHedgeHogsToAdd += numberOfLadyHogs * 2;
+        incrementHedgehog((int) totalHedgeHogsToAdd);
+        updateUI();
     }
 
     public void checkForEvents(){
         //DEBUG
-        event1FLag = false;
         if(totalHedgehogs > 10 && !event1FLag) {
             playEvent(1);
             event1FLag = true;
@@ -213,6 +239,50 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         PowerUpRecycler adapter = new PowerUpRecycler(data);
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(this));
+
+        rv.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, rv ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        if(position == 0){
+                            incrementMealWorms();
+                        }
+                        if(position == 1){
+                            incrementSafari();
+                        }
+                        if(position == 2){
+                            incrementLadies();
+                        }
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
+    }
+
+    public void incrementMealWorms(){
+        if(currentHedgehogs > mealWormPrice){
+            currentHedgehogs -= mealWormPrice;
+            numberOfMealWorms++;
+        }
+        updateUI();
+    }
+
+    public void incrementSafari(){
+        if(currentHedgehogs > safariPrice){
+            currentHedgehogs -= safariPrice;
+            numberOfSafaris++;
+        }
+        updateUI();
+    }
+
+    public void incrementLadies(){
+        if(currentHedgehogs > ladyHogPrice){
+            currentHedgehogs -= ladyHogPrice;
+            numberOfLadyHogs++;
+        }
+        updateUI();
     }
 
     PowerUps [] arr = new PowerUps[]{
@@ -237,6 +307,20 @@ public class GameActivity extends AppCompatActivity implements Choreographer.Fra
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setUpgradesFromSaveState(){
+        try {
+            numberOfMealWorms =  currentSaveState.getInt("mealworms");
+            numberOfSafaris =  currentSaveState.getInt("safaris");
+            numberOfLadyHogs =  currentSaveState.getInt("ladyhogs");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void hitButton() {
+        soundPlayer.playHitSound();
     }
 
 }

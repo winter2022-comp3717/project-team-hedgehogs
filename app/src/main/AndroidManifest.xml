@@ -11,6 +11,7 @@
         android:theme="@style/Theme.Hedgehog_Honeymoon">
         <activity
             android:name=".StoryActivity"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".GameActivity"
