@@ -51,6 +51,9 @@ public class GameActivity extends AppCompatActivity{
 
     private SoundPlayer soundPlayer;
 
+    private boolean isMusicOn = true;
+    private boolean isSfxOn = false;
+
     Handler handler = new Handler();
     int delay = 100;
     Runnable runnable;
@@ -73,14 +76,33 @@ public class GameActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         setUpRecyclerView(arr);
 
+        Intent mainActivityIntent = getIntent();
+        if(mainActivityIntent.hasExtra("OPENGAME")){
+            System.out.println("CONTAINS KEY for opening game");
+            boolean[] settingsArray = mainActivityIntent.getBooleanArrayExtra("OPENGAME");
+            isMusicOn = settingsArray[0];
+            isSfxOn = settingsArray[1];
+        } else {
+            System.out.println("NO KEY HERE");
+        }
 
-        hedgehogPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                incrementHedgehog();
-                hitButton();
-            }
-        });
+        if(isSfxOn) {
+            hedgehogPicture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    incrementHedgehog();
+                    hitButton();
+                }
+            });
+        } else {
+            hedgehogPicture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    incrementHedgehog();
+                }
+            });
+        }
+
 
         saveManager = new SaveManager(getApplicationContext());
         currentSaveState = saveManager.getCurrentSaveState();
@@ -114,10 +136,17 @@ public class GameActivity extends AppCompatActivity{
         if (item.getItemId() == R.id.Menu_Home)
         {
             Intent intent = new Intent(this, MainActivity.class);
+            boolean[] settingsArray = new boolean[4];
+            settingsArray[0] = isMusicOn;
+            settingsArray[1] = isSfxOn;
+            intent.putExtra("OPENMENU", settingsArray);
             startActivity(intent);
         } else if(item.getItemId() == R.id.Menu_settings) {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("OPENSETTINGS", true);
+            boolean[] settingsArray = new boolean[4];
+            settingsArray[0] = isMusicOn;
+            settingsArray[1] = isSfxOn;
+            intent.putExtra("OPENSETTINGS", settingsArray);
             startActivity(intent);
         } else {
             System.out.println(item.getTitle());

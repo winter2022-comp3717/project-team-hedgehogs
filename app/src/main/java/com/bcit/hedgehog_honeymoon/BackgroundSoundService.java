@@ -23,7 +23,8 @@ public class BackgroundSoundService extends Service {
     }
     public int onStartCommand(Intent intent, int flags, int startId) {
         mediaPlayer.start();
-        Toast.makeText(getApplicationContext(), "Playing Background music",    Toast.LENGTH_SHORT).show();
+        // TO print something on game screen
+        //Toast.makeText(getApplicationContext(), "Playing Background music",    Toast.LENGTH_SHORT).show();
         return startId;
     }
     public void onStart(Intent intent, int startId) {
@@ -32,6 +33,10 @@ public class BackgroundSoundService extends Service {
     public void onDestroy() {
         mediaPlayer.stop();
         mediaPlayer.release();
+    }
+
+    public void onPause() {
+        mediaPlayer.stop();
     }
     @Override
     public void onLowMemory() {

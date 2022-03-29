@@ -1,5 +1,7 @@
 package com.bcit.hedgehog_honeymoon;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -26,13 +28,15 @@ public class SettingsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    //private static final String ARG_PARAM2 = "param2";
 
     private SoundPlayer soundPlayer;
 
+    private MainInterface mainListener;
+
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private SettingsClass mParam1;
+    //private String mParam2;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -43,15 +47,14 @@ public class SettingsFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * //@param param2 Parameter 2.
      * @return A new instance of fragment SettingsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
+    public static SettingsFragment newInstance(SettingsClass param1) {
         SettingsFragment fragment = new SettingsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,8 +63,10 @@ public class SettingsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam1 = (SettingsClass) getArguments().getSerializable(ARG_PARAM1);
+        } else {
+            System.out.println("*ARGUMENTS NOTTTTTTTTTTTTTTTTTTFOUND*");
+            System.out.println("^^^^^^^^^^^^^^^^^^^^^");
         }
 
     }
@@ -76,56 +81,58 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         SwitchCompat switchView = getView().findViewById(R.id.switch_settings_music);
+        SwitchCompat switchView2 = getView().findViewById(R.id.switch_settings_sfx);
 
-        switchView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Intent musicService = new Intent(getActivity(), BackgroundSoundService.class);
-                if (isChecked){
-                    getActivity().startService(musicService);
-                } else {
-                    getActivity().stopService(musicService);
+        if(mParam1 != null) {
+            boolean isMusicOn = mParam1.isMusicOn();
+            boolean isSfxOn = mParam1.isSfxOn();
+            // Set switches on or off depending on bool
+            switchView.setChecked(isMusicOn);
+            switchView2.setChecked(isSfxOn);
+
+
+            switchView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    Intent musicService = new Intent(getActivity(), BackgroundSoundService.class);
+                    if (isChecked){
+                        getActivity().startService(musicService);
+                        ((MainActivity) getActivity()).setSettingsContextMusic(true);
+                    } else {
+                        getActivity().stopService(musicService);
+                        ((MainActivity) getActivity()).setSettingsContextMusic(false);
+                    }
                 }
-            }
-        });
+            });
 
-//        Button testButton = getView().findViewById(R.id.testButton_settings);
-//        Button testImageViewGame = getView().findViewById(R.id.button_main_settings);
-//        System.out.println(testButton);
-//        soundPlayer = new SoundPlayer(getActivity());
-//        testButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                soundPlayer.playHitSound();
-//                System.out.println(testButton);
-//                System.out.println("test reach into game activity");
-//                System.out.println(testImageViewGame);
-//            }
-//        });
-//
-//        SwitchCompat switchViewSFX = getView().findViewById(R.id.switch_settings_sfx);
-//
-//        switchViewSFX.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked){
-//                    testButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            soundPlayer.playHitSound();
-//                            System.out.println(testButton);
-//                            System.out.println("test reach into game activity");
-//                            System.out.println(testImageViewGame);
-//                        }
-//                    });
-//                } else {
-//                    testButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            System.out.println("Dud");
-//                        }
-//                    });
-//                }
-//            }
-//        });
+            switchView2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked){
+                        // add logic to turn on sfx
+                        try {
+                            ((MainActivity) getActivity()).setSettingsContextSfx(true);
+                        } catch (NullPointerException e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                    } else {
+                        // add logic to turn off sfx (maybe is done already in main activity
+                        try {
+                            ((MainActivity) getActivity()).setSettingsContextSfx(false);
+                        } catch (NullPointerException e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                    }
+                }
+            });
+
+            System.out.println("@@@@@@@@!!!!!!!!!!!!!!!!!!@@@@@@@@@@@");
+            System.out.println("TESTING fragment = " + mParam1);
+
+        } else {
+            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            System.out.println("mparam1 IS null");
+        }
 
     }
 

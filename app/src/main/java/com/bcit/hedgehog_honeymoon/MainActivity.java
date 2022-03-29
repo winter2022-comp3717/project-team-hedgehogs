@@ -16,12 +16,19 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainInterface{
 
 //    BackgroundSound mBackgroundSound = new BackgroundSound();
     private Intent musicService;
 
     private SoundPlayer soundPlayer;
+
+    private boolean isSettingsOpen = false;
+
+    private boolean isMusicOn = true;
+    private boolean isSfxOn = true;
+
+    private SettingsClass settingsObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +41,30 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainerView_main, new ImageHedgehogFragment());
         fragmentTransaction.commit();
-        View dummyView = findViewById(R.id.fragmentContainerView_main);
-        PlayBackgroundSound(dummyView);
-        System.out.println(getIntent());
 
-        if(getIntent().hasExtra("OPENSETTINGS")){
-                System.out.println("CONTAINS KEY");
-                openSettings();
+        View dummyView = findViewById(R.id.fragmentContainerView_main);
+
+        // Open settings when hitting 'settings' button from navbar
+        Intent gameIntent = getIntent();
+        if(gameIntent.hasExtra("OPENSETTINGS")){
+                System.out.println("CONTAINS KEY for opening settings");
+                boolean[] settingsArray = gameIntent.getBooleanArrayExtra("OPENSETTINGS");
+                isMusicOn = settingsArray[0];
+                isSfxOn = settingsArray[1];
+                openSettings(dummyView);
+            } else if(getIntent().hasExtra("OPENMENU")){
+                System.out.println("CONTAINS KEY for opening menu");
+                boolean[] settingsArray = gameIntent.getBooleanArrayExtra("OPENMENU");
+                isMusicOn = settingsArray[0];
+                isSfxOn = settingsArray[1];
             } else {
-                System.out.println("NO KEY HERE");
-            }
+            System.out.println("NO KEY HERE");
+        }
+
+        // Start background music
+        if (isMusicOn) {
+            PlayBackgroundSound(dummyView);
+        }
         }
 
 
@@ -55,23 +76,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToGameActivity(View v) {
         Intent intent = new Intent(this, GameActivity.class);
+        boolean[] settingsArray = new boolean[2];
+        settingsArray[0] = isMusicOn;
+        settingsArray[1] = isSfxOn;
+        intent.putExtra("OPENGAME", settingsArray);
         startActivity(intent);
     }
 
     public void openSettings(View v) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainerView_main, new SettingsFragment());
-        fragmentTransaction.commit();
-    }
+        //SettingsClass settingsObject = new SettingsClass(true, false);
+        if(!isSettingsOpen) {
+            fragmentTransaction.replace(R.id.fragmentContainerView_main,
+                    SettingsFragment.newInstance(new SettingsClass(isMusicOn, isSfxOn)));
+            fragmentTransaction.commit();
 
-    public void openSettings() {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainerView_main, new SettingsFragment());
-        fragmentTransaction.commit();
-    }
+            isSettingsOpen = true;
+        } else {
+            fragmentTransaction.replace(R.id.fragmentContainerView_main, new ImageHedgehogFragment());
+            fragmentTransaction.commit();
 
-    public void hitButton() {
-        soundPlayer.playHitSound();
+            isSettingsOpen = false;
+        }
     }
 
     public void clearData(View view){
@@ -79,4 +105,20 @@ public class MainActivity extends AppCompatActivity {
         saveManager.clearAllData();
     }
 
+    @Override
+    public boolean[] getSettingsContext() {
+        boolean settingsContext[] = new boolean[2];
+        settingsContext[0] = isMusicOn;
+        settingsContext[1] = isSfxOn;
+        return settingsContext;
+    }
+
+    public void setSettingsContextMusic(boolean newIsMusicOnBool) {
+        isMusicOn = newIsMusicOnBool;
+    }
+
+    public void setSettingsContextSfx(boolean newIsSfxOnBool) {
+        isSfxOn = newIsSfxOnBool;
+    }
 }
+
