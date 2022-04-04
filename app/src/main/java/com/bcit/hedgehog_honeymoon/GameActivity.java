@@ -173,8 +173,8 @@ public class GameActivity extends AppCompatActivity{
             currentSaveState.put("totalHedgehogs", totalHedgehogs);
             currentSaveState.put("currentHedgehogs", currentHedgehogs);
 
-            currentSaveState.put("SFX", false);
-            currentSaveState.put("Music", false);
+            currentSaveState.put("SFX", isSfxOn);
+            currentSaveState.put("Music", isMusicOn);
             currentSaveState.put("Volume", 50);
 
             currentSaveState.put("mealworms", numberOfMealWorms);

@@ -30,21 +30,37 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
 
     private SettingsClass settingsObject;
 
+    public SaveState currentSaveState;
+    public SaveManager saveManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        soundPlayer = new SoundPlayer(this);
+        // Access old save state to check if music and sfx should be on or off
+        saveManager = new SaveManager(getApplicationContext());
+        currentSaveState = saveManager.getCurrentSaveState();
+        try {
+            isMusicOn = currentSaveState.getBoolean("Music");
+            isSfxOn = currentSaveState.getBoolean("SFX");
+        } catch(Exception e) {
+            System.out.println("oops. could not access either 'Music' or 'SFX key-value" +
+                    " pairs from 'saveState'");
+        }
 
+        // Setup default hedgehog fragment for main menu (hedgehog fragment has no features apart
+        // from having a cute hedgehog in the main menu, and to be a placeholder for when fragment
+        // is replaced by 'settingsFragment' when settings button is clicked)
         FragmentTransaction fragmentTransaction;
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainerView_main, new ImageHedgehogFragment());
         fragmentTransaction.commit();
 
-        View dummyView = findViewById(R.id.fragmentContainerView_main);
 
         // Open settings when hitting 'settings' button from navbar
+        View dummyView = findViewById(R.id.fragmentContainerView_main);
+
         Intent gameIntent = getIntent();
         if(gameIntent.hasExtra("OPENSETTINGS")){
                 System.out.println("CONTAINS KEY for opening settings");
@@ -65,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements MainInterface{
         if (isMusicOn) {
             PlayBackgroundSound(dummyView);
         }
-        }
+    }
 
 
 

@@ -144,6 +144,9 @@ class SaveManager{
             currentState.put("currentHedgehogs", 0);
             currentState.put("totalHedgehogs", 0);
 
+            currentState.put("SFX", true);
+            currentState.put("Music", true);
+
             currentState.put("mealworms", 0);
             currentState.put("safaris", 0);
             currentState.put("ladyhogs", 0);
