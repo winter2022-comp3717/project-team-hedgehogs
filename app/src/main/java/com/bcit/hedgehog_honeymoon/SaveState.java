@@ -175,6 +175,7 @@ class SaveManager{
             currentState.put("Event12", false);
             currentState.put("Event13", false);
             currentState.put("Event14", false);
+            currentState.put("Event15", false);
 
         } catch (JSONException e) {
             e.printStackTrace();

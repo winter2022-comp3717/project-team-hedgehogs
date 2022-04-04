@@ -48,6 +48,11 @@ public class GameActivity extends AppCompatActivity{
     public static boolean event8FLag = false;
     public static boolean event9FLag = false;
     public static boolean event10FLag = false;
+    public static boolean event11FLag = false;
+    public static boolean event12FLag = false;
+    public static boolean event13FLag = false;
+    public static boolean event14FLag = false;
+    public static boolean event15FLag = false;
 
     private SoundPlayer soundPlayer;
 
@@ -201,6 +206,11 @@ public class GameActivity extends AppCompatActivity{
             currentSaveState.put("Event8", event8FLag);
             currentSaveState.put("Event9", event9FLag);
             currentSaveState.put("Event10", event10FLag);
+            currentSaveState.put("Event11", event10FLag);
+            currentSaveState.put("Event12", event10FLag);
+            currentSaveState.put("Event13", event10FLag);
+            currentSaveState.put("Event14", event10FLag);
+            currentSaveState.put("Event15", event10FLag);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -285,6 +295,53 @@ public class GameActivity extends AppCompatActivity{
             playEvent(6);
             return;
         }
+        if(totalHedgehogs > 20000 && !event7FLag){
+            event7FLag = true;
+            playEvent(7);
+            return;
+        }
+        if(totalHedgehogs > 40000 && !event8FLag){
+            event8FLag = true;
+            playEvent(8);
+            return;
+        }
+        if(totalHedgehogs > 80000 && !event9FLag){
+            event9FLag = true;
+            playEvent(9);
+            return;
+        }
+        if(totalHedgehogs > 100000 && !event10FLag){
+            event10FLag = true;
+            playEvent(10);
+            return;
+        }
+        if(totalHedgehogs > 120000 && !event11FLag){
+            event11FLag = true;
+            playEvent(11);
+            return;
+        }
+        if(totalHedgehogs > 150000 && !event12FLag){
+            event12FLag = true;
+            playEvent(12);
+            return;
+        }
+        if(totalHedgehogs > 200000 && !event13FLag){
+            event13FLag = true;
+            playEvent(13);
+            return;
+        }
+        if(totalHedgehogs > 750000 && !event14FLag){
+            event14FLag = true;
+            playEvent(14);
+            return;
+        }
+        if(currentHedgehogs > 1000000 && !event15FLag){
+            event15FLag = true;
+            playEvent(15);
+            return;
+        }
+
+
     }
 
     public void playEvent(int eventNumber){
@@ -308,6 +365,33 @@ public class GameActivity extends AppCompatActivity{
         } else if (eventNumber == 6){
             intent.putExtra("TEXT", R.string.event_6);
             intent.putExtra("IMG", R.drawable.kitkat);
+        } else if (eventNumber == 7){
+            intent.putExtra("TEXT", R.string.event_7);
+            intent.putExtra("IMG", R.drawable.tapp);
+        } else if (eventNumber == 8){
+            intent.putExtra("TEXT", R.string.event_8);
+            intent.putExtra("IMG", R.drawable.kitkat);
+        } else if (eventNumber == 9){
+            intent.putExtra("TEXT", R.string.event_9);
+            intent.putExtra("IMG", R.drawable.tapp);
+        } else if (eventNumber == 10){
+            intent.putExtra("TEXT", R.string.event_10);
+            intent.putExtra("IMG", R.drawable.kitkat);
+        } else if (eventNumber == 11){
+            intent.putExtra("TEXT", R.string.event_11);
+            intent.putExtra("IMG", R.drawable.agent);
+        } else if (eventNumber == 12){
+            intent.putExtra("TEXT", R.string.event_12);
+            intent.putExtra("IMG", R.drawable.kitkat);
+        } else if (eventNumber == 13){
+            intent.putExtra("TEXT", R.string.event_13);
+            intent.putExtra("IMG", R.drawable.agent);
+        } else if (eventNumber == 14){
+            intent.putExtra("TEXT", R.string.event_14);
+            intent.putExtra("IMG", R.drawable.kitkat);
+        } else if (eventNumber == 15){
+            intent.putExtra("TEXT", R.string.event_15);
+            intent.putExtra("IMG", R.drawable.radio);
         }
 
         startActivity(intent);
@@ -388,6 +472,12 @@ public class GameActivity extends AppCompatActivity{
             event8FLag = currentSaveState.getBoolean("Event8");
             event9FLag = currentSaveState.getBoolean("Event9");
             event10FLag = currentSaveState.getBoolean("Even10");
+            event11FLag = currentSaveState.getBoolean("Even11");
+            event12FLag = currentSaveState.getBoolean("Even12");
+            event13FLag = currentSaveState.getBoolean("Even13");
+            event14FLag = currentSaveState.getBoolean("Even14");
+            event15FLag = currentSaveState.getBoolean("Even15");
+
 
         } catch (JSONException e) {
             e.printStackTrace();

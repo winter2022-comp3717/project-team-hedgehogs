@@ -42,7 +42,73 @@
     <string name="event_6">
         Hey again! I hear you\'ve been moving up in the world! Great work over here, you always seem to be bustling with activity.
 
-        Listen, this may sound silly, but I had a couple hedgehog
+        Listen, this may sound silly, but I had a couple hedgehog friends living on my ranch up until a little while ago. They seem to have disappeared. I really liked those critters, could you keep an out for them, for me?
+</string>
+    <string name="event_7">
+        Great news! You\'ve been making excellent progress, and I\'m happy to announce that you\'ve been promoted to Hedge-hedge-employee-leader. Keep up the great work, we\'re spreading your success story to all the different franchise owners around your planet.
+
+        We\'ve also included another 5000 Scritch-Bux for you. Spend them all, and happy hordge hordges!
+
+
+    </string>
+    <string name="event_8">
+        Hey neighbor! You\'ve probably noticed, but gas prices have gone way down since you\'ve opened your ranch. All this business you\'ve brought in has been great for the economy. Remember little old Kitkat when you\'re at the top, okay?
+    </string>
+    <string name="event_9">
+        I have some great news for you from HQ. As a result of your incredible productivity, work ethic, and propensity to save your scritch bucks, you\'ve been selected as an applicant for the Inner Circle of Happy Scritches Hedgehog Sanctuary. This is an incredibly opportunity for you to serve on the board of directors.
+
+        We\'ll be sending an agent down from HQ over the next few weeks. He\'s a few thousand light-years away, so it\'ll be about a weeks travel time. Keep working hard in the mean time, and good luck!
+
+    </string>
+    <string name="event_10">
+        H-hey neighbor? You okay? You look tired.
+
+        You want to go for a drive somewhere? With the economy how it\'s been lately, I was able to afford a new car! I\'d be happy to take you for a ride!
+
+        No? Well, uh, don\'t work too hard. I\'ll be around..
+
+    </string>
+    <string name="event_11">
+        Ah, there you are. Large operation you\'ve got here. Industrious, good.
+
+        My name is Agent Filibuster. To be clear from the start, until I\'ve deemed you worthy, you have no name in my eyes. From this moment until I leave, your performance will be under scrutiny.
+
+        While the quantity of the Chog you\'ve been sending back to HQ has been great, I\'ll be looking at the quality, living conditions, and long-term feasibility of this planet as a new headquarters. I hope I haven\'t made this trip for nothing
+
+    </string>
+    <string name="event_12">
+        Hey Neighbor… That agent guy who\'s been around, he\'s been conducting some really strange experiments, and I think you should see what he\'s been up to.
+
+        See here? I saw him using this weird device. It looks like the kinds of things I use at my farm to measure the purity of my cow\'s milk, but it seems to measure hedgehog needles for…. purity?
+
+        Listen, I don\'t think that Happy Scritches is actually a Hedgehog Sanctuary. I think they\'re processing the Hedgehogs somehow…
+
+        Just think about it.
+
+    </string>
+    <string name="event_13">
+        Alright, I\'ve had some time on the farm, and I\'ve concluded that your business is quite up to snuff. I\'ll be reporting to Mr. Tapp directly, and I do believe he\'ll be pleased.
+
+        I hope you don\'t mind me taking a few hundred of your stock. These are some pure hedgehogs, and with their extract, I should be able to get back home even faster than I arrived.
+        Looking forward to working with you in the future.
+
+    </string>
+    <string name="event_14">
+        He said what!! He\'s using the Hedgehogs to get back home faster??
+
+        I think I get it. These little horge hogs, they\'re using them for faster than light travel. I don\'t want to think about what happens to the little hoggers in the process. We have to stop them!
+
+        I think I have a plan. If they\'re as powerful as you say, don\'t send any more back to HQ. If you can collect about 1,000,000 for me, I think that we can fight back against Happy Scritches!
+
+        I\'ll get to work, send over any choggers that you get!
+
+    </string>
+    <string name="event_15">
+        Using the technology that Kitkat was able to scrape together from what the agent left behind and an entire army of Hedgehogs, you and Kitkat create a radio transmitter capable of broadcasting across the entire universe.
+
+        Once people see that Happy Scritches is exploiting a species as lovely as hedgehogs, the corporation is boycotted, and Mr. Tapp is thrown in prison for false advertising.
+
+        Great job, you\'ve reached the end of Happy Hedgehogs. We hope you\'ve had fun!
 
     </string>
     <string name="music">Music</string>
