@@ -3,6 +3,7 @@ package com.bcit.hedgehog_honeymoon;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -236,6 +237,7 @@ public class GameActivity extends AppCompatActivity{
         setUpRecyclerView(arr);
     }
 
+    @SuppressLint("DefaultLocale")
     public String formatHedgehogs(float hedHogFloat){
         if(hedHogFloat == (long) hedHogFloat){
             return String.format("%.2f", (float) hedHogFloat);
@@ -259,8 +261,8 @@ public class GameActivity extends AppCompatActivity{
     public void checkForAutomation(){
         float totalHedgeHogsToAdd = 0;
         totalHedgeHogsToAdd += (numberOfMealWorms * 0.5) / 10f;
-        totalHedgeHogsToAdd += numberOfSafaris / 10f;
-        totalHedgeHogsToAdd += (numberOfLadyHogs * 5) / 10f;
+        totalHedgeHogsToAdd += numberOfSafaris * 2 / 10f;
+        totalHedgeHogsToAdd += (numberOfLadyHogs * 8) / 10f;
         incrementHedgehog((float) totalHedgeHogsToAdd);
     }
 
@@ -270,72 +272,72 @@ public class GameActivity extends AppCompatActivity{
             playEvent(1);
             return;
         }
-        if(totalHedgehogs > 100 && !event2FLag){
+        else if(totalHedgehogs > 100 && !event2FLag){
             event2FLag = true;
             playEvent(2);
             return;
         }
-        if(totalHedgehogs > 500 && !event3FLag){
+        else if(totalHedgehogs > 500 && !event3FLag){
             event3FLag = true;
             playEvent(3);
             return;
         }
-        if(totalHedgehogs > 1250 && !event4FLag){
+        else if(totalHedgehogs > 1250 && !event4FLag){
             event4FLag = true;
             playEvent(4);
             return;
         }
-        if(totalHedgehogs > 3000 && !event5FLag){
+        else if(totalHedgehogs > 3000 && !event5FLag){
             event5FLag = true;
             playEvent(5);
             return;
         }
-        if(totalHedgehogs > 10000 && !event6FLag){
+        else if(totalHedgehogs > 10000 && !event6FLag){
             event6FLag = true;
             playEvent(6);
             return;
         }
-        if(totalHedgehogs > 20000 && !event7FLag){
+        else if(totalHedgehogs > 20000 && !event7FLag){
             event7FLag = true;
             playEvent(7);
             return;
         }
-        if(totalHedgehogs > 40000 && !event8FLag){
+        else if(totalHedgehogs > 40000 && !event8FLag){
             event8FLag = true;
             playEvent(8);
             return;
         }
-        if(totalHedgehogs > 80000 && !event9FLag){
+        else if(totalHedgehogs > 80000 && !event9FLag){
             event9FLag = true;
             playEvent(9);
             return;
         }
-        if(totalHedgehogs > 100000 && !event10FLag){
+        else if(totalHedgehogs > 100000 && !event10FLag){
             event10FLag = true;
             playEvent(10);
             return;
         }
-        if(totalHedgehogs > 120000 && !event11FLag){
+        else if(totalHedgehogs > 120000 && !event11FLag){
             event11FLag = true;
             playEvent(11);
             return;
         }
-        if(totalHedgehogs > 150000 && !event12FLag){
+        else if(totalHedgehogs > 150000 && !event12FLag){
             event12FLag = true;
             playEvent(12);
             return;
         }
-        if(totalHedgehogs > 200000 && !event13FLag){
+        else if(totalHedgehogs > 200000 && !event13FLag){
             event13FLag = true;
             playEvent(13);
             return;
         }
-        if(totalHedgehogs > 750000 && !event14FLag){
+        else if(totalHedgehogs > 750000 && !event14FLag){
             event14FLag = true;
             playEvent(14);
             return;
         }
-        if(currentHedgehogs > 1000000 && !event15FLag){
+        else if(currentHedgehogs > 1000000 && !event15FLag){
             event15FLag = true;
             playEvent(15);
             return;
@@ -457,7 +459,7 @@ public class GameActivity extends AppCompatActivity{
     PowerUps [] arr = new PowerUps[]{
             new PowerUps ("Mealworm", "Hedgie-boys love these little snacks! Lay'em out around the ranch to attract spikers!", 50, R.drawable.mealworm),
             new PowerUps ("Hedgehog Safari", "Hire an employee to help you gather up those snorf-hogs!", 350, R.drawable.safari),
-            new PowerUps ("Lady Hog", "Strait from happy scritches HQ, a lady-hog is sure to attract lots of hedgers to the ranch!", 100, R.drawable.ladyhog)
+            new PowerUps ("Lady Hog", "Straight from Happy Scritches HQ, a lady-hog is sure to attract lots of hedgers to the ranch!", 100, R.drawable.ladyhog)
     };
 
     public void setEventFlagsFromSaveState(){
